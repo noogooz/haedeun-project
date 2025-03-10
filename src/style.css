@@ -291,3 +291,18 @@ body {
   background: white;
   color: black;
 }
+
+.character-detail {
+  text-align: center;
+  padding: 20px;
+}
+
+.character-detail h1 {
+  font-size: 2rem;
+  color: #4C4CCB;
+}
+
+.character-detail p {
+  font-size: 1.2rem;
+  color: #555;
+}
