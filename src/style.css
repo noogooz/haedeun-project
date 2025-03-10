@@ -1,0 +1,293 @@
+body {
+  background-color: #f9f9ff;
+  font-family: sans-serif;
+}
+
+
+
+.home {
+  height: 100vh;
+  background: linear-gradient(135deg, #c3cfe2, #9bafd9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.home h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+
+.home button {
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.home button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+
+body {
+  background: linear-gradient(135deg, #D8B5FF, #9BA2FF, #6A7CE0);
+  font-family: 'Pretendard', sans-serif;
+  padding: 40px;
+}
+
+
+
+.home button {
+  background: linear-gradient(to right, #6D5AE0, #9B5AE0);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.home button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+body {
+  background: linear-gradient(135deg, #D8B5FF, #9BA2FF, #6A7CE0);
+  font-family: 'Pretendard', sans-serif;
+  padding: 40px;
+}
+
+.character-card {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 16px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+}
+
+.character-card h2 {
+  font-size: 1.5rem;
+  color: #4D5AB8;
+  margin-bottom: 10px;
+}
+
+.character-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.home button {
+  background: linear-gradient(to right, #6D5AE0, #9B5AE0);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.home button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  max-width: 500px;
+  text-align: center;
+}
+
+.modal-content h2 {
+  color: #4C4CCB;
+}
+
+.modal-content p {
+  color: #555;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #6D5AE0;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* 페이지 전환 부드러운 효과 */
+.page-transition {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* 🔍 검색창 - 신비로운 디자인 */
+.search-input {
+  width: 60%;
+  max-width: 400px;
+  padding: 12px 18px;
+  margin: 30px auto;
+  display: block;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* 🔍 검색창에 포커스했을 때 */
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* 검색창 placeholder 스타일 */
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+/* 캐릭터 카드 디자인 + 애니메이션 */
+.character-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+/* 🖱 마우스를 올리면 부드럽게 떠오르는 효과 */
+.character-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+/* ⭐ 즐겨찾기 버튼 */
+.favorite-star {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.favorite-star:hover {
+  transform: scale(1.2);
+}
+
+.character-card {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 16px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+}
+
+.character-card h2 {
+  font-size: 1.5rem;
+  color: #4D5AB8;
+  margin-bottom: 10px;
+}
+
+.character-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.home button {
+  background: linear-gradient(to right, #6D5AE0, #9B5AE0);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.home button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* 정렬 드롭다운 스타일 */
+.sort-select {
+  width: 200px;
+  padding: 10px;
+  margin: 20px auto;
+  display: block;
+  font-size: 1rem;
+  border: 2px solid #6D5AE0;
+  border-radius: 8px;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  border-color: #4C4CCB;
+  box-shadow: 0 0 10px rgba(109, 90, 224, 0.5);
+}
+
+.sort-select option {
+  background: white;
+  color: black;
+}
