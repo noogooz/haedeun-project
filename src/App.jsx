@@ -1,17 +1,11 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import CharactersPage from './CharactersPage';
-import CharacterDetail from './pages/CharacterDetail'; // ✅ 추가
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import AnimatedRoutes from "./components/AnimatedRoutes"; // ✅ 애니메이션 적용된 라우터
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/characters" element={<CharactersPage />} />
-        <Route path="/characters/:name" element={<CharacterDetail />} /> {/* ✅ 캐릭터 상세 페이지 추가 */}
-      </Routes>
+      <AnimatedRoutes />
     </BrowserRouter>
   );
 }
