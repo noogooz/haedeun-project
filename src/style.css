@@ -962,8 +962,8 @@ body {
   position: absolute;
   top: -20%; /* PC에서 적절한 위치 */
   left: -10%; /* 왼쪽으로 이동 */
-  width: 700px; /* ✅ 기본 크기 */
-  height: 700px;
+  width: 0px; /* ✅ 기본 크기 */
+  height: 0px;
   background: radial-gradient(
     circle,
     rgba(255, 245, 230, 1) 20%,
@@ -983,8 +983,8 @@ body {
 /* ✅ 🌙 모바일 버전에서 달 크기 조정 */
 @media screen and (max-width: 768px) {
   .moon-container {
-    width: 400px;  /* ✅ 모바일에서 400px로 축소 */
-    height: 400px;
+    width: 0px;  /* ✅ 모바일에서 400px로 축소 */
+    height: 0px;
     top: -10%; /* 모바일에서 위치 조정 */
     left: -15%;
     box-shadow: 0 0 100px rgba(255, 200, 180, 0.6), 
@@ -997,8 +997,8 @@ body {
 /* ✅ 🌙 더 작은 모바일 화면 (아이폰 SE 같은) */
 @media screen and (max-width: 480px) {
   .moon-container {
-    width: 300px;
-    height: 300px;
+    width: 0px;
+    height: 0px;
     top: -5%; /* 너무 안 내려가게 */
     left: -20%;
   }
@@ -1020,8 +1020,8 @@ body {
   position: absolute;
   top: -25%; /* 더 위로 배치 */
   left: -10%; /* 왼쪽으로 이동 */
-  width: 700px; /* ✅ 더 크게 */
-  height: 700px; /* ✅ 더 크게 */
+  width: 0px; /* ✅ 더 크게 */
+  height: 0px; /* ✅ 더 크게 */
   background: radial-gradient(
     circle,
     rgba(255, 245, 230, 1) 20%,  /* 중심을 밝게 */
