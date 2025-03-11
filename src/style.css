@@ -1336,22 +1336,13 @@ body {
   opacity: 1 !important; /* ✅ 투명도 강제 */
   -webkit-backdrop-filter: none !important; /* ✅ Safari에서도 확실하게 */
 }
-/* 기본적으로 박스를 완전히 투명하게 */
-.home-intro {
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-  color: rgba(255, 255, 255, 1) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  opacity: 1 !important;
-}
-
-/* iOS Safari에서 강제 투명 처리 */
+/* iOS Safari에서 강제 적용 */
 @supports (-webkit-touch-callout: none) {
   .home-intro {
-    background: none !important; /* ✅ 완전 투명 */
-    color: rgba(255, 255, 255, 1) !important; /* ✅ 흰색 텍스트 유지 */
-    display: block !important;
+    color: #E0E0FF !important; /* ✅ 흰색 대신 연한 푸른색 */
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    opacity: 1 !important;
   }
 }
