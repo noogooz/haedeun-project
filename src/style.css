@@ -1050,3 +1050,24 @@ body {
   }
 }
 
+/* 📌 모바일에서 검색창 & 정렬 버튼 크기 조절 */
+@media (max-width: 768px) {
+  .search-sort-container {
+    width: 90%; /* ✅ 가로 너비 줄이기 */
+    padding: 10px; /* ✅ 패딩 줄여서 너무 크지 않게 */
+  }
+
+  .search-input {
+    font-size: 14px; /* ✅ 글자 크기 줄이기 */
+    padding: 8px; /* ✅ 입력창 크기 조절 */
+  }
+
+  .sort-select {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+.search-sort-container {
+  background: rgba(255, 255, 255, 0.15); /* ✅ 투명도 조절 (0.2 → 0.15) */
+  backdrop-filter: blur(8px); /* ✅ 블러 효과 조절 */
+}
