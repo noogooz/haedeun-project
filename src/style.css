@@ -1396,10 +1396,355 @@ body {
   margin-top: 15px;
   line-height: 1.5; 
 }
-.character-description {
-  text-align: center; /* ✅ 중앙 정렬 */
+/* ✅ 네비게이션 바 스타일 */
+.navbar {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 50px; /* ✅ 적절한 높이 부여 */
+  gap: 30px;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.3); /* ✅ 반투명한 검은색 배경 */
+  backdrop-filter: blur(10px); /* ✅ 배경 블러 효과 */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* ✅ 부드러운 테두리 */
+  transition: 0.3s ease-in-out;
+}
+
+/* ✅ 네비게이션 글씨 스타일 */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ✅ 네비게이션 호버 효과 */
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* ✅ 살짝 밝아지는 효과 */
+  color: #ffcc00; /* ✅ 네온 느낌의 노란색 */
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); /* ✅ 네온 효과 */
+}
+/* ✅ 방명록 컨테이너 */
+.guestbook-container {
+  text-align: center;
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: white;
+}
+
+/* ✅ 제목 스타일 */
+.guestbook-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* ✅ 입력 폼 스타일 */
+.guestbook-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* ✅ 입력 필드 공통 스타일 */
+.guestbook-input,
+.guestbook-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 16px;
+}
+
+/* ✅ 버튼 스타일 */
+.guestbook-button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #6D5AE0;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.guestbook-button:hover {
+  background: #9B5AE0;
+}
+
+/* ✅ 방명록 메시지 스타일 */
+.guestbook-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.guestbook-message {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+
+/* ✅ 닉네임 스타일 */
+.guestbook-nickname {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ✅ 메시지 내용 스타일 */
+.guestbook-text {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* ✅ 삭제 버튼 스타일 */
+.guestbook-delete {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+}
+/* ✅ 방명록 제목 (네온 효과 추가) */
+.guestbook-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9), 
+               0px 0px 20px rgba(173, 216, 230, 0.8);
+}
+
+/* ✅ 닉네임과 메시지 글씨 대비 증가 */
+.guestbook-nickname,
+.guestbook-text {
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* ✅ 검은 테두리 효과 추가 */
+}
+/* ✅ 방명록 전체를 감싸는 박스 */
+.guestbook-container {
+  position: relative;
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* ✅ 반투명한 검은색 배경 추가 */
+  border-radius: 12px;
+  backdrop-filter: blur(10px); /* ✅ 유리 같은 블러 효과 */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+/* ✅ 방명록 제목 폰트 조정 */
+.guestbook-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  font-family: "Noto Sans KR", "Pretendard", sans-serif; /* ✅ 한글 폰트 추가 */
+}
+/* ✅ 입력창 스타일 */
+.guestbook-input, .guestbook-textarea {
+  color: white; /* ✅ 글씨 색 흰색 유지 */
+  font-size: 16px;
+}
+
+/* ✅ 플레이스홀더 가독성 향상 */
+.guestbook-input::placeholder, .guestbook-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* ✅ 기존보다 더 밝게 조정 */
+  font-style: italic;
+}
+.guestbook-input, .guestbook-textarea {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.guestbook-input::placeholder, .guestbook-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.9); /* ✅ 아예 흰색에 가깝게 */
+}
+.starry-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.3) 5%, rgba(0, 0, 0, 0) 80%);
+}
+
+/* ✅ 방명록 주변에서는 별 밀도 줄이기 */
+@media (min-width: 600px) {
+  .guestbook-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 60%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    filter: blur(5px);
+  }
+}
+.guestbook-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ✅ 세로 중앙 정렬 */
+  align-items: center; /* ✅ 가로 중앙 정렬 */
+  text-align: center;
+  height: 100vh; /* ✅ 전체 높이 적용 */
+  padding: 20px;
+  max-width: 600px;
+  margin: auto; /* ✅ 수평 중앙 정렬 */
+  color: white;
+}
+@media (max-width: 768px) {
+  .guestbook-container {
+    height: auto; /* ✅ 작은 화면에서는 너무 길지 않게 */
+    padding: 50px 20px; /* ✅ 적절한 여백 추가 */
+    margin-top: 10vh; /* ✅ 상단에서 약간 띄우기 */
+  }
+}
+.guestbook-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ✅ 세로 중앙 정렬 */
+  align-items: center; /* ✅ 가로 중앙 정렬 */
+  text-align: center;
+  height: 80vh; /* ✅ 화면 높이의 80%만 사용 (너무 길지 않게) */
+  padding: 20px;
+  max-width: 600px;
+  margin: auto; /* ✅ 수평 중앙 정렬 */
+  background: rgba(0, 0, 0, 0.4); /* ✅ 배경 살짝 어둡게 (가독성 향상) */
+  border-radius: 12px; /* ✅ 부드러운 모서리 */
+  backdrop-filter: blur(10px); /* ✅ 유리 효과 */
+}
+.guestbook-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* ✅ 입력 필드 간격 추가 */
+  width: 100%;
+  max-width: 500px; /* ✅ 너무 넓지 않도록 제한 */
+}
+
+.guestbook-input, .guestbook-textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15); /* ✅ 살짝 어두운 배경 */
+  color: white;
+  font-size: 16px;
+  text-align: center; /* ✅ 텍스트 중앙 정렬 */
+}
+
+.guestbook-button {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6D5AE0, #9B5AE0); /* ✅ 더 깔끔한 버튼 디자인 */
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.guestbook-button:hover {
+  background: linear-gradient(135deg, #9B5AE0, #6D5AE0);
+}
+@media (max-width: 768px) {
+  .guestbook-container {
+    height: auto; /* ✅ 작은 화면에서는 너무 길지 않게 */
+    padding: 40px 20px; /* ✅ 적절한 여백 추가 */
+    margin-top: 10vh; /* ✅ 상단에서 살짝 띄우기 */
+  }
+
+  .guestbook-form {
+    max-width: 90%; /* ✅ 모바일에서 너무 넓지 않도록 */
+  }
+
+  .guestbook-button {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+.guestbook-title {
+  font-size: 32px; /* ✅ 기존 28px → 32px (더 강조) */
+  font-weight: bold;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.9); /* ✅ 더 부드러운 네온 효과 */
+}
+.guestbook-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ 모든 요소 중앙 정렬 */
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: white;
+}
+.guestbook-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ✅ 입력 필드 & 버튼 중앙 정렬 */
+  gap: 12px; /* ✅ 간격 조정 */
+}
+
+.guestbook-input, .guestbook-textarea {
+  width: 90%; /* ✅ 입력 필드 크기 조정 */
+  max-width: 500px; /* ✅ 너무 커지지 않도록 제한 */
+  text-align: center; /* ✅ 입력창 내부 글씨도 중앙 정렬 */
+}
+.guestbook-button {
+  width: 90%; /* ✅ 버튼 크기를 입력창과 동일하게 */
+  max-width: 500px;
+  text-align: center;
+}
+.guestbook-input::placeholder,
+.guestbook-textarea::placeholder {
+  font-family: "Pretendard", sans-serif; /* ✅ 깔끔하고 부드러운 폰트 */
+  font-style: normal; /* ✅ 기존 기울어진 스타일 제거 */
+  font-size: 14px; /* ✅ 글자 크기 조정 */
+  color: rgba(255, 255, 255, 0.6); /* ✅ 기존보다 더 선명한 색상 */
+  text-align: center; /* ✅ 입력창 내부 중앙 정렬 */
+}
+.guestbook-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 300px; /* ✅ 메시지 영역 최대 높이 설정 */
+  overflow-y: auto; /* ✅ 넘칠 경우 스크롤 */
+  padding-right: 10px; /* ✅ 스크롤바가 생겨도 디자인 유지 */
+}
+
+/* ✅ 스크롤바 스타일 조정 (더 깔끔하게) */
+.guestbook-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.guestbook-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.guestbook-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+.guestbook-container {
+  max-width: 600px;
+  min-height: 500px; /* ✅ 최소 높이 유지 */
+  margin: 0 auto;
 }
