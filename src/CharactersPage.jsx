@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { Link } from "react-router-dom"; // ✅ 추가
 import CharacterCard from "/src/components/CharacterCard"; // ✅ 절대 경로 사용
 import characterData from "/src/data/characters.json"; // ✅ 절대 경로 사용
 import gsap from "gsap";
@@ -61,10 +62,14 @@ export default function CharactersPage() {
     <div className="characters-container">
       <h1 className="characters-title">🌟 캐릭터 소개</h1>
 
-      {/* 🔍 검색 & 정렬 컨테이너 */}
-      <div className="search-sort-wrapper"> {/* ✅ 추가된 감싸는 컨테이너 */}
-      <div className="search-sort-container" style={{ maxWidth: "360px", margin: "0 auto" }}>
+      {/* ✅ AI 챗봇 버튼 추가 */}
+      <Link to="/chatbot" className="chatbot-button">
+       🌞 햇님이와 대화하기
+      </Link>
 
+      {/* 🔍 검색 & 정렬 컨테이너 */}
+      <div className="search-sort-wrapper">
+        <div className="search-sort-container" style={{ maxWidth: "360px", margin: "0 auto" }}>
           <input
             type="text"
             placeholder="캐릭터 이름 검색..."

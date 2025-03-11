@@ -1748,3 +1748,667 @@ body {
   min-height: 500px; /* ✅ 최소 높이 유지 */
   margin: 0 auto;
 }
+/* ✅ 카드 컨테이너를 flex 중앙 정렬 */
+.characters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* ✅ 중앙 정렬 */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ✅ 카드 크기 & 회전 문제 해결 */
+.character-card {
+  width: 220px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px; /* ✅ 3D 회전 효과 */
+  transform-origin: center; /* ✅ 회전 기준점을 중앙으로 설정 */
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* ✅ 카드 회전 시 위치 어긋남 방지 */
+.character-card.flipped .card-inner {
+  transform: rotateY(180deg);
+  transform-origin: center; /* ✅ 회전 기준점 유지 */
+}
+
+/* 카드 앞면 & 뒷면 */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* 카드 앞면 */
+.card-front {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+/* 카드 뒷면 */
+.card-back {
+  background: rgba(255, 255, 255, 0.8);
+  transform: rotateY(180deg);
+}
+
+/* 캐릭터 이름 */
+.character-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* 즐겨찾기 버튼 */
+.favorite-star {
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: transform 0.2s;
+}
+
+.favorite-star:hover {
+  transform: scale(1.2);
+}
+
+/* ✅ 마우스 오버 시 부드러운 빛나는 효과 */
+.character-card:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+  transition: box-shadow 0.3s ease-in-out;
+}
+/* ✅ 카드 컨테이너 중앙 정렬 */
+.characters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ✅ 카드 밀림 방지: 감싸는 부모 요소 추가 */
+.card-wrapper {
+  width: 220px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px; /* ✅ 3D 효과 적용 */
+}
+
+/* ✅ 카드 크기 & 회전 문제 해결 */
+.character-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-origin: center;
+  transform-style: preserve-3d;
+}
+
+/* ✅ 카드 회전 */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* ✅ 회전 시 밀림 방지 */
+.character-card.flipped .card-inner {
+  transform: rotateY(180deg);
+  transform-origin: center;
+}
+
+/* 카드 앞면 & 뒷면 */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* ✅ 카드 앞면 스타일 */
+.card-front {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+/* ✅ 카드 뒷면 스타일 */
+.card-back {
+  background: rgba(255, 255, 255, 0.8);
+  transform: rotateY(180deg);
+}
+
+/* ✅ 캐릭터 이름 */
+.character-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ✅ 즐겨찾기 버튼 */
+.favorite-star {
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: transform 0.2s;
+}
+
+.favorite-star:hover {
+  transform: scale(1.2);
+}
+
+/* ✅ 카드 hover 효과 */
+.card-wrapper:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+  transition: box-shadow 0.3s ease-in-out;
+}
+/* ✅ 카드 컨테이너 (중앙 정렬 + 겹침 방지) */
+.characters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ✅ 카드 밀림 방지 + 회전 부드럽게 적용 */
+.card-wrapper {
+  width: 220px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px; /* ✅ 3D 효과 적용 */
+  position: relative;
+}
+
+/* ✅ 카드 크기 & 위치 고정 */
+.character-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* ✅ 카드가 겹치는 문제 해결 (클릭한 카드가 앞으로 오게) */
+.character-card.flipped {
+  z-index: 1000; /* ✅ 클릭한 카드가 최상위로 올라오게 */
+}
+
+/* ✅ 카드 앞면 & 뒷면 */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* ✅ 회전 시 밀림 방지 */
+.character-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* ✅ 카드 앞면 스타일 */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* ✅ 카드 앞면 스타일 */
+.card-front {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+/* ✅ 카드 뒷면 스타일 */
+.card-back {
+  background: rgba(255, 255, 255, 0.8);
+  transform: rotateY(180deg);
+}
+
+/* ✅ 캐릭터 이름 */
+.character-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ✅ 즐겨찾기 버튼 */
+.favorite-star {
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: transform 0.2s;
+}
+
+.favorite-star:hover {
+  transform: scale(1.2);
+}
+
+/* ✅ 카드 hover 효과 */
+.card-wrapper:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+  transition: box-shadow 0.3s ease-in-out;
+}
+/* ✅ 카드 컨테이너 (중앙 정렬 + 겹침 방지) */
+.characters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* ✅ 카드 간격 줄이기 */
+  padding: 20px;
+}
+
+/* ✅ 카드 크기 조정 */
+.card-wrapper {
+  width: 200px; /* ✅ 기존보다 살짝 줄임 */
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; /* ✅ 3D 효과 */
+  position: relative;
+}
+
+/* ✅ 카드 회전 시 밀리지 않도록 조정 */
+.character-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* ✅ 카드 클릭 시 최상위로 정렬 */
+.character-card.flipped {
+  z-index: 1000; /* ✅ 클릭한 카드가 위로 올라오게 */
+}
+
+/* ✅ 카드 앞면 & 뒷면 */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* ✅ 회전 시 밀림 방지 */
+.character-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* ✅ 카드 앞면 */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* ✅ 카드 앞면 스타일 */
+.card-front {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+/* ✅ 카드 뒷면 스타일 */
+.card-back {
+  background: rgba(255, 255, 255, 0.9);
+  transform: rotateY(180deg);
+}
+
+/* ✅ 캐릭터 이름 */
+.character-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ✅ 즐겨찾기 버튼 */
+.favorite-star {
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: transform 0.2s;
+}
+
+.favorite-star:hover {
+  transform: scale(1.1);
+}
+
+/* ✅ 카드 hover 효과 */
+.card-wrapper:hover {
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3열 정렬 */
+  gap: 20px; /* 카드 간격 */
+  justify-content: center;
+  align-items: start; /* 카드 높이 맞춤 */
+}
+
+/* 📌 캐릭터 카드 */
+.character-card {
+  width: 250px;
+  height: 180px; /* ✅ 카드 높이 고정 */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 📌 카드 hover 시 효과 */
+.character-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 📌 캐릭터 이름 */
+.character-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+/* 📌 설명 */
+.character-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 📌 ⭐ 즐겨찾기 아이콘 */
+.favorite-star {
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* ✅ 구름 & 토피트 카드만 아래로 살짝 내리기 */
+.character-card:nth-child(5),
+.character-card:nth-child(6) {
+  margin-top: 30px;
+}
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3열 정렬 */
+  gap: 20px; /* 카드 간격 */
+  justify-content: center;
+  align-items: start; /* 카드 높이 맞춤 */
+}
+
+/* 📌 캐릭터 카드 */
+.character-card {
+  width: 250px;
+  height: 180px; /* ✅ 카드 높이 고정 */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 📌 카드 hover 시 효과 */
+.character-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 📌 캐릭터 이름 */
+.character-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+/* 📌 설명 */
+.character-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 📌 ⭐ 즐겨찾기 아이콘 */
+.favorite-star {
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* ✅ 구름 & 토피트 카드만 아래로 조정 (숲은 유지) */
+.character-card:nth-child(5) {
+  transform: translateY(20px); /* ✅ 구름 카드만 내려감 */
+}
+
+.character-card:nth-child(6) {
+  transform: translateY(20px); /* ✅ 토피트 카드만 내려감 */
+}
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* ✅ 3x2 정렬 유지 */
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* 🌟 카드 디자인 */
+.character-card {
+  width: 250px;
+  height: 200px; /* ✅ 모든 카드 높이를 200px로 통일 */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ✅ 세로 중앙 정렬 */
+  align-items: center; /* ✅ 가로 중앙 정렬 */
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 📌 카드 hover 효과 */
+.character-card:hover {
+  transform: scale(1.05); /* ✅ 너무 과하지 않게 부드러운 확대 효과 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ✨ 글씨 중앙 정렬 */
+.character-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* 🌟 설명 글씨 정렬 */
+.character-description {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* ⭐ 즐겨찾기 아이콘 */
+.favorite-star {
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* ✅ 숲, 구름, 토피트 카드 위치 조정 */
+.character-card:nth-child(4),
+.character-card:nth-child(5),
+.character-card:nth-child(6) {
+  transform: translateY(15px); /* ✅ 똑같이 내려서 높이 맞추기 */
+}
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* ✅ 3열 구조 유지 */
+  gap: 30px; /* ✅ 카드 사이 간격 */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* 🌟 카드 디자인 */
+.character-card {
+  width: 250px;
+  height: 180px; /* ✅ 모든 카드 높이를 180px로 통일 */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ✅ 세로 중앙 정렬 */
+  align-items: center; /* ✅ 가로 중앙 정렬 */
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 📌 카드 hover 효과 */
+.character-card:hover {
+  transform: scale(1.05); /* ✅ hover 시 살짝 확대 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ✨ 글씨 중앙 정렬 */
+.character-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* 🌟 설명 글씨 정렬 */
+.character-description {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* ⭐ 즐겨찾기 아이콘 */
+.favorite-star {
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* ✅ 숲, 구름, 토피트 카드 위치 정렬 */
+.character-card:nth-child(4),
+.character-card:nth-child(5),
+.character-card:nth-child(6) {
+  margin-top: 20px; /* ✅ 정확히 20px 내려서 정렬 맞추기 */
+}
+.chatbot-button {
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #6D5AE0, #9B5AE0);
+  border-radius: 25px;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.chatbot-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+.chatbot-button {
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #6D5AE0, #9B5AE0);
+  border-radius: 25px;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.chatbot-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}

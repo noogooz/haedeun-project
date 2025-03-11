@@ -1,0 +1,22 @@
+{
+    "name": "Haedeun Project",
+    "short_name": "Haedeun",
+    "description": "햇님이 세계관을 탐험하는 웹사이트",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#6D5AE0",
+    "icons": [
+      {
+        "src": "/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
