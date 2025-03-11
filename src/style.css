@@ -1336,13 +1336,55 @@ body {
   opacity: 1 !important; /* ✅ 투명도 강제 */
   -webkit-backdrop-filter: none !important; /* ✅ Safari에서도 확실하게 */
 }
-/* iOS Safari에서 강제 적용 */
-@supports (-webkit-touch-callout: none) {
-  .home-intro {
-    color: #E0E0FF !important; /* ✅ 흰색 대신 연한 푸른색 */
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-    opacity: 1 !important;
-  }
+/* ✅ 홈 페이지 컨테이너 */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+/* ✅ 메인 박스 */
+.home-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+}
+
+/* ✅ 타이틀 스타일 */
+.home-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #E0E0FF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* ✅ 소개글 스타일 */
+.home-intro {
+  font-size: 16px;
+  color: #E0E0FF; /* ✅ 밝은 푸른색 */
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* ✅ 버튼 스타일 */
+.home-box button {
+  background: linear-gradient(135deg, #6D5AE0, #9B5AE0);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.home-box button:hover {
+  transform: scale(1.05);
 }
