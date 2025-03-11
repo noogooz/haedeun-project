@@ -293,4 +293,48 @@
       display: flex;
     }
   }
-          
+  .navbar {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2); /* 반투명 네비 */
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 20px; /* 간격 조정 */
+  }
+  
+  .navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  
+  .navbar-links a:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* ✅ 반응형: 모바일에서도 항상 네비게이션 표시 */
+  @media (max-width: 768px) {
+    .navbar {
+      justify-content: center; /* 모바일에서도 중앙 정렬 유지 */
+    }
+  
+    .navbar-links {
+      flex-direction: row; /* 가로 정렬 유지 */
+      gap: 15px;
+    }
+  
+    .navbar-links a {
+      font-size: 16px; /* 모바일에서 폰트 크기 조정 */
+      padding: 6px 10px;
+    }
+  }
+            
