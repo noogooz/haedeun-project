@@ -1288,3 +1288,29 @@ body {
     max-width: 90%;
   }
 }
+.home-intro {
+  color: rgba(255, 255, 255, 0.95); /* ✅ 글씨를 더 밝게 */
+  font-size: 16px; /* ✅ 적당한 크기로 조정 */
+  text-align: center;
+  width: 80%;
+  max-width: 550px; /* ✅ 너무 길지 않게 */
+  padding: 0;
+  
+  background: transparent !important; /* ✅ 배경 완전 투명 */
+  box-shadow: none !important; /* ✅ 그림자 제거 */
+  border: none !important; /* ✅ 테두리 제거 */
+  
+  display: block;
+  margin: 10px auto;
+  
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5), 
+               0px 0px 15px rgba(173, 216, 230, 0.4); /* ✅ 은은한 네온 효과 추가 */
+}
+
+/* 📱 태블릿 & 아이패드 대응 */
+@media screen and (max-width: 1024px) {
+  .home-intro {
+    background: none !important; /* ✅ 강제로 배경 제거 */
+    color: rgba(255, 255, 255, 1) !important; /* ✅ 글씨 대비 높이기 */
+  }
+}
