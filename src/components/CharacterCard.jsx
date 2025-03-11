@@ -1,24 +1,28 @@
-import React from "react";
+import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function CharacterCard({ name, description, isFavorite, toggleFavorite }) {
+const CharacterCard = memo(({ name, description, isFavorite, toggleFavorite }) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="character-card"
-      onClick={() => navigate(`/characters/${name}`)}
-    >
-      <h2>
-        {name}
-        <span className="favorite-star" onClick={(e) => {
-          e.stopPropagation(); // ⭐ 클릭 시 상세 페이지 이동 방지
-          toggleFavorite();
-        }}>
-          {isFavorite ? "⭐" : "☆"}
-        </span>
-      </h2>
-      <p>{description}</p>
+    <div className="character-card" onClick={() => navigate(`/characters/${name}`)}>
+      <div className="character-content">
+        <h2 className="character-name">
+          {name}
+          <span 
+            className="favorite-star"
+            onClick={(e) => {
+              e.stopPropagation(); // ⭐ 클릭 시 상세 페이지 이동 방지
+              toggleFavorite();
+            }}
+          >
+            {isFavorite ? "⭐" : "☆"}
+          </span>
+        </h2>
+        <p className="character-description">{description}</p>
+      </div>
     </div>
   );
-}
+});
+
+export default CharacterCard;

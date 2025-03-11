@@ -1,60 +1,69 @@
-import React, { useEffect, useRef, useState } from 'react';
-import CharacterCard from './components/CharacterCard';
-import characters from './data/characters.json';
-import gsap from 'gsap';
+import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import CharacterCard from "/src/components/CharacterCard"; // ✅ 절대 경로 사용
+import characterData from "/src/data/characters.json"; // ✅ 절대 경로 사용
+import gsap from "gsap";
 
 export default function CharactersPage() {
   const [searchTerm, setSearchTerm] = useState(""); // 🔍 검색 상태
+  const [sortOption, setSortOption] = useState("default"); // 🔄 정렬 상태
   const [favorites, setFavorites] = useState(() => {
     const savedFavorites = localStorage.getItem("favorites");
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
 
-  const [sortOption, setSortOption] = useState("default"); // 정렬 상태
   const cardsRef = useRef(null);
 
   useEffect(() => {
     if (cardsRef.current) {
       gsap.fromTo(
         cardsRef.current.children,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'power3.out',
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
         }
       );
     }
+  }, [characterData]); // ✅ 캐릭터 데이터가 변경될 때만 애니메이션 실행
+
+  // ✅ `useMemo`로 정렬된 데이터 캐싱 (불필요한 연산 방지)
+  const sortedCharacters = useMemo(() => {
+    return [...characterData].sort((a, b) => {
+      if (sortOption === "A-Z") return a.name.localeCompare(b.name);
+      if (sortOption === "Z-A") return b.name.localeCompare(a.name);
+      if (sortOption === "random") return Math.random() - 0.5;
+      return 0;
+    });
+  }, [sortOption, characterData]);
+
+  // ✅ `useMemo`로 검색 필터링 최적화
+  const filteredCharacters = useMemo(() => {
+    return sortedCharacters.filter((character) =>
+      character.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [sortedCharacters, searchTerm]);
+
+  // ✅ `useCallback`으로 `toggleFavorite` 최적화
+  const toggleFavorite = useCallback((characterName) => {
+    setFavorites((prevFavorites) => {
+      let updatedFavorites;
+      if (prevFavorites.includes(characterName)) {
+        updatedFavorites = prevFavorites.filter((name) => name !== characterName);
+      } else {
+        updatedFavorites = [...prevFavorites, characterName];
+      }
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
   }, []);
 
-  const toggleFavorite = (characterName) => {
-    let updatedFavorites;
-    if (favorites.includes(characterName)) {
-      updatedFavorites = favorites.filter((name) => name !== characterName);
-    } else {
-      updatedFavorites = [...favorites, characterName];
-    }
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
-
-  // 🔄 캐릭터 정렬 함수
-  const sortedCharacters = [...characters].sort((a, b) => {
-    if (sortOption === "A-Z") return a.name.localeCompare(b.name);
-    if (sortOption === "Z-A") return b.name.localeCompare(a.name);
-    if (sortOption === "random") return Math.random() - 0.5;
-    return 0;
-  });
-
-  // 🔍 검색 기능 추가 (정렬 후 필터링)
-  const filteredCharacters = sortedCharacters.filter(character =>
-    character.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
-    <div>
+    <div className="characters-container">
+      <h1 className="characters-title">🌟 캐릭터 소개</h1>
+
       {/* 🔍 검색창 */}
       <input
         type="text"
@@ -76,14 +85,14 @@ export default function CharactersPage() {
         <option value="random">랜덤 정렬</option>
       </select>
 
-      <div ref={cardsRef} className="character-container">
-        {filteredCharacters.map((character, index) => (
+      <div ref={cardsRef} className="characters-grid">
+        {filteredCharacters.map((char) => (
           <CharacterCard
-            key={index}
-            name={character.name}
-            description={character.description}
-            isFavorite={favorites.includes(character.name)}
-            toggleFavorite={() => toggleFavorite(character.name)}
+            key={char.name}
+            name={char.name}
+            description={char.description}
+            isFavorite={favorites.includes(char.name)}
+            toggleFavorite={() => toggleFavorite(char.name)}
           />
         ))}
       </div>

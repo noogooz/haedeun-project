@@ -1,26 +1,28 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion"; // ✅ 애니메이션 라이브러리
+import { AnimatePresence, motion } from "framer-motion";
 import Home from "../Home";
 import CharactersPage from "../CharactersPage";
 import CharacterDetail from "../pages/CharacterDetail";
+import WorldPage from "../pages/WorldPage"; // ✅ 세계관 페이지 추가
 
 export default function AnimatedRoutes() {
-  const location = useLocation(); // ✅ 현재 위치 가져오기
+  const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        initial={{ opacity: 0, y: 50, filter: "blur(10px)" }} // ✅ 더 몽환적인 효과
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} // ✅ 부드럽게 선명해지는 효과
-        exit={{ opacity: 0, y: -30, filter: "blur(10px)" }} // ✅ 사라질 때 흐려지는 효과
-        transition={{ duration: 1.2, ease: "easeOut" }} // ✅ 더 부드러운 애니메이션
+        initial={{ opacity: 0, scale: 0.95 }} // ✅ scale을 0.9 → 0.95로 변경
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 1.02 }} // ✅ exit 효과를 너무 강하게 주지 않음
+        transition={{ duration: 0.5, ease: "easeOut" }} // ✅ duration을 0.8 → 0.5로 단축
         style={{ width: "100%", minHeight: "100vh" }}
       >
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/characters" element={<CharactersPage />} />
           <Route path="/characters/:name" element={<CharacterDetail />} />
+          <Route path="/world" element={<WorldPage />} /> {/* ✅ 세계관 페이지 추가 */}
         </Routes>
       </motion.div>
     </AnimatePresence>
