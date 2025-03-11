@@ -1388,3 +1388,11 @@ body {
 .home-box button:hover {
   transform: scale(1.05);
 }
+/* ✅ 소개글 스타일 (기존: 16px → 수정: 14px) */
+.home-intro {
+  font-size: 14px; /* 🔹 글씨 크기 줄이기 */
+  color: #E0E0FF;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  margin-top: 15px;
+  line-height: 1.5; /* 🔹 줄 간격도 살짝 줄임 */
+}
