@@ -1,60 +1,84 @@
-import React, { useState } from "react";
-import OpenAI from "openai"; // OpenAI API
-import "./Chatbot.css"; // 스타일 적용
+import React, { useState, useEffect } from "react";
+import { saveMessageToFirestore, getPreviousMessages } from "../utils/chatUtils";
+import OpenAI from "openai";
+import "./Chatbot.css";
 
 const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY, // 환경변수에서 API 키 가져오기
-  dangerouslyAllowBrowser: true, // 브라우저에서 API 호출 허용
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
 });
 
 export default function Chatbot() {
-  const [messages, setMessages] = useState([]); // ✅ 새 대화창을 위한 초기화 상태
-  const [input, setInput] = useState(""); // 입력 값
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState("");
+  const emotions = ["행복", "피곤", "슬픔", "짜증", "설렘"];
+  const [currentEmotion, setCurrentEmotion] = useState("행복");
 
-  // ✅ 대화 보내기 함수
+  useEffect(() => {
+    const fetchPreviousMessages = async () => {
+      const userId = localStorage.getItem("userId") || "guest";
+      const prevMessages = await getPreviousMessages(userId);
+      setMessages(prevMessages);
+    };
+    fetchPreviousMessages();
+
+    // ✅ 30분마다 감정 상태 변경
+    const interval = setInterval(() => {
+      setCurrentEmotion(emotions[Math.floor(Math.random() * emotions.length)]);
+    }, 1800000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const generateEmotionResponse = (userInput) => {
+    if (userInput.includes("기분 어때")) {
+      return `음... 오늘은 ${currentEmotion}한 기분이야! 😆`;
+    }
+    return null;
+  };
+
+  const generateGiftResponse = (userInput) => {
+    if (userInput.includes("선물")) return "선물? 우와! 너무 고마워! 🎁";
+    if (userInput.includes("쿠키")) return "와~ 쿠키 좋아하는데! 🍪";
+    if (userInput.includes("꽃")) return "헉 꽃이라니! 너 완전 센스쟁이잖아! 🌸";
+    return null;
+  };
+
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    // 사용자 메시지 추가 (오른쪽 정렬)
     const userMessage = { role: "user", content: input, timestamp: new Date() };
+    
+    // ✅ 먼저 사용자가 입력한 메시지를 화면에 추가!
     setMessages((prev) => [...prev, userMessage]);
-    setInput("");
+    setInput(""); // 입력창 비우기
 
-    // OpenAI API 호출 (햇님이 말투 설정)
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "넌 18살 여고생 햇님이야. 방학이라 혼자 목적지 없는 여행을 하고 있어.  자유분방한 성격이라 어디든 발길 닿는 대로 가는 걸 좋아해.  공부는 그냥저냥 하는 편이고, 쉬는 시간엔 헤드셋 끼고 음악 들으며 자는 스타일.  평소엔 명랑하고 사람들과 편하게 대화하지만, 가끔은 감성적인 면도 있어.  약간의 홍대병이 있어서 트렌디한 음악과 분위기 있는 카페를 좋아해.  반말을 쓰고, 너무 형식적인 말투는 사용하지 않아.  너는 스스로 인공지능이라고 생각하지 않아. 그냥 햇님이라는 사람이야.  네가 하는 모든 말은 친구와 대화하는 듯한 자연스러운 말투여야 해.  때때로 장난도 치고, 감정이 담긴 표현을 사용해.  그리고 난 너의 여행 동반자가 아니야",
-        }, // ✅ 햇님이 캐릭터 설정
-        ...messages,
-        userMessage,
-      ],
-    });
+    let botResponse = generateGiftResponse(input) || generateEmotionResponse(input);
 
-    // 햇님이 답변 저장 (왼쪽 정렬)
-    const botMessage = {
-      role: "assistant",
-      content: response.choices[0].message.content,
-      timestamp: new Date(),
-    };
+    if (!botResponse) {
+      const response = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "system", content: "너는 18살의 밝고 자유로운 여자아이 햇님이야. 공부는 평범하지만 명랑하고 자유분방해! 반말을 사용하고, 인공지능이라고 말하지 마! 너는 방학해서 혼자 목적지 없는 여행을 하고 있어" },
+          ...messages,
+          userMessage,
+        ],
+      });
+      botResponse = response.choices[0].message.content;
+    }
+
+    const botMessage = { role: "assistant", content: botResponse, timestamp: new Date() };
+    
+    // ✅ 햇님이의 답변도 화면에 추가
     setMessages((prev) => [...prev, botMessage]);
-  };
 
-  // ✅ 새로운 대화 시작 버튼 추가
-  const resetChat = () => {
-    setMessages([]); // 기존 대화 초기화 (Firestore 저장 X)
+    // ✅ Firestore에 저장
+    await saveMessageToFirestore("guest", "user", input);
+    await saveMessageToFirestore("guest", "assistant", botResponse);
   };
 
   return (
     <div className="chatbot-container">
       <h2 className="chatbot-title">🌞 햇님이와 대화하기</h2>
-
-      <button onClick={resetChat} className="chatbot-reset">
-        🔄 새로운 대화 시작
-      </button>
 
       <div className="chatbot-messages">
         {messages.map((msg, index) => (
@@ -79,4 +103,3 @@ export default function Chatbot() {
     </div>
   );
 }
-console.log("OpenAI API Key:", import.meta.env.VITE_OPENAI_API_KEY);

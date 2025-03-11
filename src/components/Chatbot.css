@@ -258,5 +258,33 @@
     background: #9b5ae0; /* 🔵 더 밝은 보라색으로 변경 */
     transform: scale(1.05);
   }
-      
+  .chatbot-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  /* ✅ 사용자 메시지 (오른쪽 정렬) */
+  .user-message {
+    align-self: flex-end;
+    background: #6d5ae0;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+  }
+  
+  /* ✅ 햇님이 메시지 (왼쪽 정렬) */
+  .bot-message {
+    align-self: flex-start;
+    background: #e0e0ff;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+  }
+        
   
