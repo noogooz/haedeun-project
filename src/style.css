@@ -2412,3 +2412,53 @@ body {
   transform: scale(1.05);
   box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
 }
+/* ✅ 모바일 반응형 스타일 */
+@media screen and (max-width: 768px) {
+  /* 🌟 챗봇 UI 조정 */
+  .chatbot-container {
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .chatbot-messages {
+    height: 300px; /* 모바일에서 너무 크지 않게 */
+    overflow-y: auto;
+  }
+
+  .chatbot-input-container {
+    flex-direction: column; /* 입력창과 버튼을 세로 정렬 */
+  }
+
+  .chatbot-input {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .chatbot-send {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  /* 🌟 캐릭터 카드 조정 */
+  .characters-grid {
+    grid-template-columns: 1fr 1fr; /* 모바일에서 2개씩 정렬 */
+    gap: 12px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .characters-grid {
+      grid-template-columns: 1fr; /* 작은 화면에서는 한 줄에 한 개 */
+    }
+  }
+
+  /* 🌟 네비게이션 바 */
+  .navbar {
+    flex-direction: column; /* 모바일에서 세로 정렬 */
+    gap: 10px;
+  }
+}
+button, input {
+  touch-action: manipulation; /* 터치 반응 개선 */
+  font-size: 16px; /* 모바일에서도 글씨가 너무 작지 않도록 */
+}

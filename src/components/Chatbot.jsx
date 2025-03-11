@@ -79,3 +79,4 @@ export default function Chatbot() {
     </div>
   );
 }
+console.log("OpenAI API Key:", import.meta.env.VITE_OPENAI_API_KEY);
