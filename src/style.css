@@ -1071,3 +1071,25 @@ body {
   background: rgba(255, 255, 255, 0.15); /* ✅ 투명도 조절 (0.2 → 0.15) */
   backdrop-filter: blur(8px); /* ✅ 블러 효과 조절 */
 }
+/* ✅ 모바일에서 검색 & 정렬 컨테이너 크기 조절 */
+@media (max-width: 768px) {
+  .search-sort-container {
+    max-width: 90%;  /* ✅ 최대 가로 너비 설정 */
+    width: 100%;
+    padding: 8px; /* ✅ 패딩 줄이기 */
+    display: flex;
+    flex-direction: column; /* ✅ 세로 정렬 */
+    align-items: center; /* ✅ 가로 중앙 정렬 */
+    justify-content: center;
+    margin: 0 auto; /* ✅ 가운데 정렬 */
+  }
+
+  .search-input,
+  .sort-select {
+    width: 90%;  /* ✅ 검색 & 정렬 박스 가로 길이 제한 */
+    max-width: 300px; /* ✅ 너무 크지 않도록 제한 */
+    font-size: 14px; /* ✅ 글자 크기 줄이기 */
+    padding: 6px 10px;
+    text-align: center;
+  }
+}

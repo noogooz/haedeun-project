@@ -63,7 +63,7 @@ export default function CharactersPage() {
 
       {/* 🔍 검색 & 정렬 컨테이너 */}
       <div className="search-sort-wrapper"> {/* ✅ 추가된 감싸는 컨테이너 */}
-      <div className="search-sort-container" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <div className="search-sort-container" style={{ maxWidth: "360px", margin: "0 auto" }}>
 
           <input
             type="text"
