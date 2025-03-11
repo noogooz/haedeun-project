@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import Home from "../Home";
-import CharactersPage from "../CharactersPage";
+import Home from "../pages/Home";
+import CharactersPage from "../pages/CharactersPage";
 import CharacterDetail from "../pages/CharacterDetail";
 import WorldPage from "../pages/WorldPage";
 import Guestbook from "../pages/Guestbook"; // ✅ 방명록 추가

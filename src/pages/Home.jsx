@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import "./style.css"; // ✅ 스타일 유지
+import "../style.css"; // ✅ 스타일 유지
 
 export default function Home() {
   useEffect(() => {
