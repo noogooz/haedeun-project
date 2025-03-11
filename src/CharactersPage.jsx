@@ -64,26 +64,27 @@ export default function CharactersPage() {
     <div className="characters-container">
       <h1 className="characters-title">🌟 캐릭터 소개</h1>
 
-      {/* 🔍 검색창 */}
-      <input
-        type="text"
-        placeholder="캐릭터 이름 검색..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-input"
-      />
+      {/* 🔍 검색 & 정렬 컨테이너 */}
+      <div className="search-sort-container">
+        <input
+          type="text"
+          placeholder="캐릭터 이름 검색..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
 
-      {/* 🔄 정렬 드롭다운 메뉴 */}
-      <select
-        className="sort-select"
-        value={sortOption}
-        onChange={(e) => setSortOption(e.target.value)}
-      >
-        <option value="default">정렬 선택</option>
-        <option value="A-Z">이름순 (A-Z)</option>
-        <option value="Z-A">이름순 (Z-A)</option>
-        <option value="random">랜덤 정렬</option>
-      </select>
+        <select
+          className="sort-select"
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+        >
+          <option value="default">정렬 선택</option>
+          <option value="A-Z">이름순 (A-Z)</option>
+          <option value="Z-A">이름순 (Z-A)</option>
+          <option value="random">랜덤 정렬</option>
+        </select>
+      </div>
 
       <div ref={cardsRef} className="characters-grid">
         {filteredCharacters.map((char) => (

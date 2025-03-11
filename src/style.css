@@ -557,4 +557,72 @@ body {
   max-width: 800px;
   margin: 0 auto;
 }
+/* 🌟 기본 캐릭터 카드 스타일 */
+.character-card {
+  width: 250px;
+  height: 350px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+/* 🏆 ⭐ 캐릭터 목록을 3열 → 2열 → 1열로 반응형 조정 */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 기본: 3개씩 배치 */
+  gap: 15px;
+  justify-content: center;
+}
+
+/* 📌 📱 작은 화면 (태블릿) */
+@media (max-width: 1024px) {
+  .characters-grid {
+    grid-template-columns: repeat(2, 1fr); /* 태블릿: 2개씩 배치 */
+  }
+
+  .character-card {
+    width: 200px;
+    height: 300px;
+  }
+
+  .characters-title {
+    font-size: 22px;
+  }
+}
+
+/* 📌 📱 더 작은 화면 (스마트폰) */
+@media (max-width: 600px) {
+  .characters-grid {
+    grid-template-columns: repeat(1, 1fr); /* 모바일: 1개씩 배치 */
+  }
+
+  .character-card {
+    width: 90%;
+    height: auto;
+  }
+
+  .search-input,
+  .sort-select {
+    width: 100%; /* 검색창과 정렬 메뉴를 가득 차게 */
+    font-size: 16px;
+  }
+
+  .characters-title {
+    font-size: 18px;
+  }
+}
+.search-sort-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* 📱 모바일에서는 세로 정렬 */
+@media (max-width: 600px) {
+  .search-sort-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
 
