@@ -1356,7 +1356,7 @@ body {
   max-width: 500px;
 }
 
-/* ✅ 타이틀 스타일 */
+
 .home-title {
   font-size: 24px;
   font-weight: bold;
@@ -1364,16 +1364,16 @@ body {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* ✅ 소개글 스타일 */
+
 .home-intro {
   font-size: 16px;
-  color: #E0E0FF; /* ✅ 밝은 푸른색 */
+  color: #E0E0FF; 
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
   margin-top: 15px;
   line-height: 1.6;
 }
 
-/* ✅ 버튼 스타일 */
+
 .home-box button {
   background: linear-gradient(135deg, #6D5AE0, #9B5AE0);
   color: white;
@@ -1388,11 +1388,18 @@ body {
 .home-box button:hover {
   transform: scale(1.05);
 }
-/* ✅ 소개글 스타일 (기존: 16px → 수정: 14px) */
+
 .home-intro {
-  font-size: 14px; /* 🔹 글씨 크기 줄이기 */
+  font-size: 14px; 
   color: #E0E0FF;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
   margin-top: 15px;
-  line-height: 1.5; /* 🔹 줄 간격도 살짝 줄임 */
+  line-height: 1.5; 
+}
+.character-description {
+  text-align: center; /* ✅ 중앙 정렬 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px; /* ✅ 적절한 높이 부여 */
 }
