@@ -1314,3 +1314,16 @@ body {
     color: rgba(255, 255, 255, 1) !important; /* ✅ 글씨 대비 높이기 */
   }
 }
+.home-intro {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.95) !important; /* ✅ 강제 적용 */
+}
+.home-intro {
+  background-color: rgba(0, 0, 0, 0) !important; /* ✅ 완전 투명 */
+  box-shadow: none !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 1) !important;
+  backdrop-filter: none !important; /* ✅ 블러 효과까지 제거 */
+}
