@@ -1201,3 +1201,90 @@ body {
     display: block !important; /* 🔥 무조건 표시되게 변경 */
   }
 }
+.home-intro {
+  color: rgba(255, 255, 255, 0.9); /* ✅ 글씨 색 유지 */
+  font-size: 18px;
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1); /* ✅ 기존보다 더 투명하게 */
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  display: flex; /* ✅ 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* ✅ 가운데 정렬 */
+}
+
+/* 📌 iOS (아이패드)에서 추가 조정 */
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .home-intro {
+    background: rgba(50, 50, 50, 0.2); /* ✅ 아이패드에서 회색으로 조정 */
+    color: white;
+  }
+}
+.home-intro {
+  color: rgba(255, 255, 255, 0.9); /* ✅ 글씨 색 유지 */
+  font-size: 18px;
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  padding: 0; /* ✅ 패딩 제거 (박스 없애기) */
+  background: none; /* ✅ 배경 완전 제거 */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* ✅ 가독성 유지 */
+  display: block; /* ✅ flex 대신 block */
+  margin: 10px auto; /* ✅ 중앙 정렬 */
+}
+
+/* 📌 아이패드에서도 정상 표시 */
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .home-intro {
+    background: none; /* ✅ 아이패드에서도 배경 없음 */
+    color: white;
+  }
+}
+.home-intro {
+  color: rgba(255, 255, 255, 0.85); /* ✅ 살짝 밝게 */
+  font-size: 16px; /* ✅ 기존보다 조금 줄임 (18px → 16px) */
+  text-align: center;
+  width: 80%;
+  max-width: 550px; /* ✅ 가로폭도 살짝 줄임 */
+  padding: 0;
+  background: none; /* ✅ 배경 완전 제거 */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* ✅ 그림자 살짝 줄임 */
+  display: block;
+  margin: 10px auto;
+}
+
+/* 📱 모바일 & 태블릿에서 더 작게 */
+@media (max-width: 768px) {
+  .home-intro {
+    font-size: 14px; /* ✅ 모바일에서는 14px로 줄이기 */
+    max-width: 90%;
+  }
+}
+.home-intro {
+  color: rgba(255, 255, 255, 0.95); /* ✅ 글씨를 더 밝게 */
+  font-size: 16px; /* ✅ 적당한 크기로 조정 */
+  text-align: center;
+  width: 80%;
+  max-width: 550px; /* ✅ 너무 길지 않게 */
+  padding: 0;
+  background: none !important; /* ✅ 배경 완전 제거 */
+  box-shadow: none !important; /* ✅ 그림자도 제거 */
+  border: none !important; /* ✅ 테두리 제거 */
+  display: block;
+  margin: 10px auto;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5), 
+               0px 0px 15px rgba(173, 216, 230, 0.4); /* ✅ 은은한 네온 효과 추가 */
+}
+
+/* 📱 모바일 & 태블릿에서 더 작게 */
+@media (max-width: 768px) {
+  .home-intro {
+    font-size: 14px; /* ✅ 모바일에서는 14px */
+    max-width: 90%;
+  }
+}
