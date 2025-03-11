@@ -1327,3 +1327,12 @@ body {
   color: rgba(255, 255, 255, 1) !important;
   backdrop-filter: none !important; /* ✅ 블러 효과까지 제거 */
 }
+.home-intro {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 1) !important; /* ✅ 완전 흰색 유지 */
+  backdrop-filter: none !important; /* ✅ 블러 효과까지 제거 */
+  opacity: 1 !important; /* ✅ 투명도 강제 */
+  -webkit-backdrop-filter: none !important; /* ✅ Safari에서도 확실하게 */
+}
