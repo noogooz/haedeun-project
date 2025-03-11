@@ -4,8 +4,8 @@ import characterData from "/src/data/characters.json"; // ✅ 절대 경로 사�
 import gsap from "gsap";
 
 export default function CharactersPage() {
-  const [searchTerm, setSearchTerm] = useState(""); // 🔍 검색 상태
-  const [sortOption, setSortOption] = useState("default"); // 🔄 정렬 상태
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState("default");
   const [favorites, setFavorites] = useState(() => {
     const savedFavorites = localStorage.getItem("favorites");
     return savedFavorites ? JSON.parse(savedFavorites) : [];
@@ -27,9 +27,8 @@ export default function CharactersPage() {
         }
       );
     }
-  }, [characterData]); // ✅ 캐릭터 데이터가 변경될 때만 애니메이션 실행
+  }, [characterData]);
 
-  // ✅ `useMemo`로 정렬된 데이터 캐싱 (불필요한 연산 방지)
   const sortedCharacters = useMemo(() => {
     return [...characterData].sort((a, b) => {
       if (sortOption === "A-Z") return a.name.localeCompare(b.name);
@@ -39,14 +38,12 @@ export default function CharactersPage() {
     });
   }, [sortOption, characterData]);
 
-  // ✅ `useMemo`로 검색 필터링 최적화
   const filteredCharacters = useMemo(() => {
     return sortedCharacters.filter((character) =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [sortedCharacters, searchTerm]);
 
-  // ✅ `useCallback`으로 `toggleFavorite` 최적화
   const toggleFavorite = useCallback((characterName) => {
     setFavorites((prevFavorites) => {
       let updatedFavorites;
@@ -65,25 +62,26 @@ export default function CharactersPage() {
       <h1 className="characters-title">🌟 캐릭터 소개</h1>
 
       {/* 🔍 검색 & 정렬 컨테이너 */}
-      <div className="search-sort-container">
-        <input
-          type="text"
-          placeholder="캐릭터 이름 검색..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
-
-        <select
-          className="sort-select"
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-        >
-          <option value="default">정렬 선택</option>
-          <option value="A-Z">이름순 (A-Z)</option>
-          <option value="Z-A">이름순 (Z-A)</option>
-          <option value="random">랜덤 정렬</option>
-        </select>
+      <div className="search-sort-wrapper"> {/* ✅ 추가된 감싸는 컨테이너 */}
+        <div className="search-sort-container">
+          <input
+            type="text"
+            placeholder="캐릭터 이름 검색..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+          <select
+            className="sort-select"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="default">정렬 선택</option>
+            <option value="A-Z">이름순 (A-Z)</option>
+            <option value="Z-A">이름순 (Z-A)</option>
+            <option value="random">랜덤 정렬</option>
+          </select>
+        </div>
       </div>
 
       <div ref={cardsRef} className="characters-grid">

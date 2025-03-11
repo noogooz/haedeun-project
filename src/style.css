@@ -625,4 +625,428 @@ body {
     gap: 5px;
   }
 }
+/* 🔍 검색 & 정렬 메뉴 반투명 배경 추가 */
+.search-sort-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.5); /* ✅ 반투명 배경 추가 */
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* 📱 모바일에서는 세로 정렬 */
+@media (max-width: 600px) {
+  .search-sort-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+/* 🌟 캐릭터 소개 제목 */
+.characters-title {
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.9); /* ✅ 글자 색상을 더 밝게 조정 */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* ✅ 가독성 향상 */
+  text-align: center;
+}
+/* 🔍 검색 & 정렬 메뉴에 몽환적인 유리 효과 추가 */
+.search-sort-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1); /* ✅ 유리 효과 (배경과 어울리게) */
+  backdrop-filter: blur(8px); /* ✅ 블러 효과 추가 */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ✅ 테두리 추가 */
+}
+
+/* 📱 모바일에서는 세로 정렬 */
+@media (max-width: 600px) {
+  .search-sort-container {
+    flex-direction: column;
+    gap: 5px;
+    width: 90%;
+    margin: auto;
+  }
+}
+
+/* 🔍 검색창 */
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2); /* ✅ 투명한 배경 */
+  color: white;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* 🔄 정렬 드롭다운 */
+.sort-select {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* 🔥 검색창 & 드롭다운 호버 효과 */
+.search-input:hover,
+.sort-select:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+/* 🌟 캐릭터 소개 제목 (몽환적인 네온 효과 추가) */
+.characters-title {
+  font-size: 26px;
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 
+               0 0 10px rgba(255, 255, 255, 0.6), 
+               0 0 15px rgba(173, 216, 230, 0.8); /* ✅ 푸른빛 네온 효과 */
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* 🌟 캐릭터 소개 제목 (더 강한 대비 적용) */
+.characters-title {
+  font-size: 26px;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8), 
+               0 0 8px rgba(173, 216, 230, 0.9), 
+               0 0 15px rgba(173, 216, 230, 0.8); /* ✅ 푸른빛 네온 + 검은 그림자 추가 */
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+/* 🔍 검색 & 정렬 메뉴 스타일 조정 (가독성 개선) */
+.search-input,
+.sort-select {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 0, 0.4); /* ✅ 배경을 더 어둡게 조정 */
+  color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* ✅ 검은 그림자 추가 */
+  font-weight: bold;
+}
+
+/* 🔥 검색창 & 드롭다운 호버 효과 */
+.search-input:hover,
+.sort-select:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+/* 🌠 기본 텍스트 스타일 (더 읽기 쉽게) */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* ✅ 전체 글씨 대비 증가 */
+}
+
+/* 🌟 캐릭터 소개 제목 (은은한 네온 효과) */
+.characters-title {
+  font-size: 26px;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 0 8px rgba(173, 216, 230, 0.6), 
+               0 0 12px rgba(173, 216, 230, 0.5), 
+               0 0 15px rgba(173, 216, 230, 0.3); /* ✅ 은은한 네온 효과 */
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+/* 🔍 검색 & 정렬 메뉴 (반투명 유리 효과) */
+.search-sort-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1); /* ✅ 반투명 유리 효과 */
+  backdrop-filter: blur(12px); /* ✅ 블러 강화 */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 📱 모바일에서는 세로 정렬 */
+@media (max-width: 600px) {
+  .search-sort-container {
+    flex-direction: column;
+    gap: 8px;
+    width: 90%;
+    margin: auto;
+  }
+}
+
+/* 🔍 검색창 */
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15); /* ✅ 더 부드러운 반투명 */
+  color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* 🔄 정렬 드롭다운 */
+.sort-select {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* 🔥 검색창 & 드롭다운 호버 효과 */
+.search-input:hover,
+.sort-select:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+/* 🌠 기본 텍스트 스타일 (가독성 + 부드러운 효과) */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  color: rgba(255, 255, 255, 0.9); /* ✅ 너무 밝지 않게 조정 */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* ✅ 가독성 향상 */
+}
+/* 🔍 검색 & 정렬 메뉴 (더 진한 반투명 효과) */
+.search-sort-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px; /* ✅ 더 아래로 내려서 달과 겹치지 않게! */
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(20, 20, 20, 0.6); /* ✅ 더 진한 배경으로 변경 */
+  backdrop-filter: blur(20px); /* ✅ 블러 효과 유지 */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.08);
+}
+/* 🌟 캐릭터 소개 제목 (더 선명하게 강조) */
+.characters-title {
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.95); /* ✅ 더 밝게 */
+  text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8), 
+               0px 0px 24px rgba(173, 216, 230, 0.6), 
+               0px 0px 32px rgba(173, 216, 230, 0.4); /* ✅ 빛 효과 유지 */
+  text-align: center;
+  font-weight: bold;
+}
+/* 🏗️ 검색창과 정렬을 더 아래로 이동 */
+.search-sort-wrapper {
+  margin-top: 40px; /* ✅ 더 아래로 내려서 달과 겹치지 않게 조정 */
+}
+/* 🔍 검색 & 정렬 컨테이너 감싸는 요소 */
+.search-sort-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* 🔍 검색 & 정렬 컨테이너 */
+.search-sort-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* 🔍 검색 입력창 */
+.search-input {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  outline: none;
+}
+
+/* 🔄 정렬 드롭다운 */
+.sort-select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  outline: none;
+}
+.moon-container {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 80px; /* ✅ 달 크기 조절 (기존보다 작게) */
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 235, 178, 0.9) 30%, rgba(255, 200, 100, 0.6) 80%);
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px rgba(255, 200, 100, 0.5);
+  transform: rotate(-5deg) skewX(-5deg); /* ✅ 삐뚤어진 느낌 자연스럽게 */
+  animation: moonGlow 4s infinite alternate ease-in-out;
+}
+
+@keyframes moonGlow {
+  0% {
+    box-shadow: 0px 0px 15px rgba(255, 200, 100, 0.5);
+  }
+  100% {
+    box-shadow: 0px 0px 30px rgba(255, 200, 100, 0.8);
+  }
+}
+.moon-container {
+  position: absolute;
+  top: -10%; /* 살짝 위로 */
+  left: -5%; /* 살짝 왼쪽으로 */
+  width: 250px; /* ✅ 크기를 크게! */
+  height: 250px; /* ✅ 크기를 크게! */
+  background: radial-gradient(circle, rgba(255, 230, 180, 0.9) 40%, rgba(255, 204, 102, 0.6) 70%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(255, 200, 100, 0.8);
+  z-index: -1; /* ✅ 배경과 자연스럽게 */
+}
+.moon-container {
+  position: absolute;
+  top: -15%; /* 더 위로 */
+  left: -5%; /* 왼쪽으로 */
+  width: 400px; /* ✅ 더 크게! */
+  height: 400px; /* ✅ 더 크게! */
+  background: radial-gradient(
+    circle,
+    rgba(255, 245, 220, 0.9) 30%,  /* 중심이 더 밝고 */
+    rgba(255, 210, 150, 0.5) 50%,  /* 부드러운 황금빛 */
+    rgba(255, 180, 220, 0.3) 80%,  /* 은은한 핑크 섞기 */
+    rgba(180, 160, 255, 0.2) 100%  /* 보랏빛 감도는 몽환적인 색 */
+  );
+  border-radius: 50%;
+  box-shadow: 0 0 100px rgba(255, 200, 150, 0.8), 
+              0 0 150px rgba(200, 150, 255, 0.6); /* ✅ 보랏빛 글로우 추가 */
+  filter: blur(5px); /* ✅ 몽환적인 효과 추가 */
+  animation: moonGlow 4s infinite alternate ease-in-out; /* ✅ 천천히 빛나는 애니메이션 */
+  z-index: -1;
+}
+
+/* ✅ 빛나는 애니메이션 추가 */
+@keyframes moonGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}.moon-container {
+  position: absolute;
+  top: -20%; /* PC에서 적절한 위치 */
+  left: -10%; /* 왼쪽으로 이동 */
+  width: 700px; /* ✅ 기본 크기 */
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 245, 230, 1) 20%,
+    rgba(255, 220, 180, 0.8) 50%,
+    rgba(200, 170, 255, 0.5) 80%,
+    rgba(180, 150, 255, 0.3) 100%
+  );
+  border-radius: 50%;
+  box-shadow: 0 0 150px rgba(255, 200, 180, 0.7), 
+              0 0 250px rgba(180, 150, 255, 0.5);
+  filter: blur(8px);
+  opacity: 0.9;
+  animation: softGlow 5s infinite alternate ease-in-out;
+  z-index: -1;
+}
+
+/* ✅ 🌙 모바일 버전에서 달 크기 조정 */
+@media screen and (max-width: 768px) {
+  .moon-container {
+    width: 400px;  /* ✅ 모바일에서 400px로 축소 */
+    height: 400px;
+    top: -10%; /* 모바일에서 위치 조정 */
+    left: -15%;
+    box-shadow: 0 0 100px rgba(255, 200, 180, 0.6), 
+                0 0 180px rgba(180, 150, 255, 0.4);
+    filter: blur(6px); /* ✅ 너무 뿌옇지 않게 */
+    opacity: 0.85;
+  }
+}
+
+/* ✅ 🌙 더 작은 모바일 화면 (아이폰 SE 같은) */
+@media screen and (max-width: 480px) {
+  .moon-container {
+    width: 300px;
+    height: 300px;
+    top: -5%; /* 너무 안 내려가게 */
+    left: -20%;
+  }
+}
+
+/* ✅ 달의 부드러운 빛나는 효과 */
+@keyframes softGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+.moon-container {
+  position: absolute;
+  top: -25%; /* 더 위로 배치 */
+  left: -10%; /* 왼쪽으로 이동 */
+  width: 700px; /* ✅ 더 크게 */
+  height: 700px; /* ✅ 더 크게 */
+  background: radial-gradient(
+    circle,
+    rgba(255, 245, 230, 1) 20%,  /* 중심을 밝게 */
+    rgba(255, 220, 180, 0.8) 50%,  /* 따뜻한 베이지 */
+    rgba(200, 170, 255, 0.5) 80%,  /* 은은한 보라 */
+    rgba(180, 150, 255, 0.3) 100%  /* 푸른빛 섞기 */
+  );
+  border-radius: 50%;
+  box-shadow: 0 0 150px rgba(255, 200, 180, 0.7), 
+              0 0 250px rgba(180, 150, 255, 0.5); /* ✅ 더 자연스러운 빛 */
+  filter: blur(8px); /* ✅ 부드럽게 퍼지는 효과 */
+  opacity: 0.9;
+  animation: softGlow 5s infinite alternate ease-in-out; /* ✅ 더 느린 빛나는 효과 */
+  z-index: -1;
+}
+
+/* ✅ 달의 부드러운 빛나는 효과 */
+@keyframes softGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
 

@@ -1,0 +1,23 @@
+/* 🌙 달 이미지 스타일 */
+#moon {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 150px; /* ✅ 크기 줄이기 (기존보다 20~30% 감소) */
+    height: auto;
+    opacity: 0.7; /* ✅ 살짝 투명하게 */
+    filter: brightness(85%);
+    pointer-events: none;
+  }
+  
+  /* 🌌 전체 배경 */
+  #starry-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), transparent);
+  }
+  
