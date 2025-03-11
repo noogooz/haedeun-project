@@ -1196,3 +1196,8 @@ body {
   transition: 0.3s;
   margin-top: 10px; /* ✅ 버튼과 소개글 박스 사이 여백 추가 */
 }
+@media (max-width: 1024px) {
+  .home-intro {
+    display: block !important; /* 🔥 무조건 표시되게 변경 */
+  }
+}
