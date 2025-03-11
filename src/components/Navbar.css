@@ -32,4 +32,265 @@
     color: #ffcc00; /* ✅ 네온 느낌의 노란색 */
     box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); /* ✅ 네온 효과 */
   }
+/* ✅ 모바일 네비게이션 */
+@media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+    }
   
+    .menu-toggle {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .nav-links.open {
+      display: flex;
+    }
+  }
+/* ✅ 기본 네비게이션 스타일 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 20px;
+    border-radius: 10px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  /* ✅ 모바일에서 햄버거 메뉴 추가 */
+  .menu-toggle {
+    display: none; /* 기본적으로 숨김 */
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* ✅ 모바일에서 햄버거 버튼 활성화 */
+  @media screen and (max-width: 768px) {
+    .menu-toggle {
+      display: block; /* 모바일에서만 보이게 */
+    }
+  
+    .nav-links {
+      display: none; /* 기본적으로 숨김 */
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+    }
+  
+    .nav-links.open {
+      display: flex; /* 햄버거 버튼 클릭 시 보이게 */
+    }
+  }
+/* ✅ 기본 네비게이션 스타일 */
+.navbar {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* ✅ 네비게이션 메뉴 중앙 정렬 */
+.nav-links {
+  display: flex;
+  gap: 20px; /* 메뉴 간격 조정 */
+}
+
+/* ✅ 네비게이션 링크 스타일 */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* ✅ 모바일에서 햄버거 메뉴 */
+.menu-toggle {
+  display: none; /* 기본적으로 숨김 */
+  position: absolute;
+  left: 20px; /* 왼쪽 상단에 배치 */
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+}
+
+/* ✅ 모바일에서 햄버거 버튼 활성화 */
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* 모바일에서만 보이게 */
+  }
+
+  .nav-links {
+    display: none; /* 기본적으로 숨김 */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .nav-links.open {
+    display: flex; /* 햄버거 버튼 클릭 시 보이게 */
+  }
+}
+/* ✅ 기본 네비게이션 스타일 */
+.navbar {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 20px;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  /* ✅ 네비게이션 메뉴 중앙 정렬 */
+  .nav-links {
+    display: flex;
+    gap: 20px; /* 메뉴 간격 조정 */
+  }
+  
+  /* ✅ 네비게이션 링크 스타일 */
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  /* ✅ 모바일에서 햄버거 메뉴 */
+  .menu-toggle {
+    display: none; /* 기본적으로 숨김 */
+    position: absolute;
+    left: 20px; /* 왼쪽 상단에 배치 */
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* ✅ 모바일에서 햄버거 버튼 활성화 */
+  @media screen and (max-width: 768px) {
+    .menu-toggle {
+      display: block; /* 모바일에서만 보이게 */
+    }
+  
+    .nav-links {
+      display: none; /* 기본적으로 숨김 */
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+    }
+  
+    .nav-links.open {
+      display: flex; /* 햄버거 버튼 클릭 시 보이게 */
+    }
+  }
+/* ✅ 네비게이션 바 전체 스타일 */
+.navbar {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1); /* 반투명한 유리 느낌 */
+    backdrop-filter: blur(10px); /* 유리 효과 */
+    padding: 12px 24px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 살짝 그림자 추가 */
+    max-width: 800px; /* 최대 너비 제한 */
+    margin: 0 auto; /* 중앙 배치 */
+  }
+  
+  /* ✅ 네비게이션 링크 컨테이너 */
+  .nav-links {
+    display: flex;
+    gap: 24px; /* 메뉴 간격 */
+  }
+  
+  /* ✅ 네비게이션 링크 스타일 */
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+  }
+  
+  /* ✅ 마우스 호버 시 효과 */
+  .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+  }
+  
+  /* ✅ 모바일에서 햄버거 버튼 */
+  .menu-toggle {
+    display: none;
+    position: absolute;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* ✅ 모바일에서 햄버거 버튼 활성화 */
+  @media screen and (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      border-radius: 12px;
+    }
+  
+    .nav-links.open {
+      display: flex;
+    }
+  }
+          

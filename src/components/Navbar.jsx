@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "/src/style.css"; // ✅ 전체 스타일을 한 곳에서 관리할 경우
-
+import "./Navbar.css";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <nav className="navbar">
-      <Link to="/">🏠 홈</Link>
-      <Link to="/characters">🎭 캐릭터</Link>
-      <Link to="/world">🌎 세계관</Link>
-      <Link to="/guestbook">📖 방명록</Link> {/* ✅ 방명록 버튼 추가 */}
+      {/* ✅ 모바일에서만 보이는 햄버거 메뉴 */}
+      <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        ☰
+      </button>
+
+      {/* ✅ PC에서는 항상 보이고, 모바일에서는 햄버거 메뉴 눌러야 보이도록 */}
+      <div className={`nav-links ${menuOpen ? "open" : ""}`}>
+        <Link to="/" onClick={() => setMenuOpen(false)}>🏠 홈</Link>
+        <Link to="/characters" onClick={() => setMenuOpen(false)}>🎭 캐릭터</Link>
+        <Link to="/world" onClick={() => setMenuOpen(false)}>🌎 세계관</Link>
+        <Link to="/guestbook" onClick={() => setMenuOpen(false)}>📖 방명록</Link>
+      
+      </div>
     </nav>
   );
 }
