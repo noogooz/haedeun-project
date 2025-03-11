@@ -1,0 +1,77 @@
+.guestbook-container {
+    text-align: center;
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    color: white;
+  }
+  
+  .guestbook-title {
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  
+  .guestbook-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .guestbook-input, .guestbook-textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+  }
+  
+  .guestbook-button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #6D5AE0;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .guestbook-button:hover {
+    background: #9B5AE0;
+  }
+  
+  .guestbook-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .guestbook-message {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+  }
+  
+  .guestbook-nickname {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .guestbook-text {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .guestbook-delete {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
