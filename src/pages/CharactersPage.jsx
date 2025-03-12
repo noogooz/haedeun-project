@@ -62,9 +62,14 @@ export default function CharactersPage() {
     <div className="characters-container">
       <h1 className="characters-title">🌟 캐릭터 소개</h1>
 
-      {/* ✅ AI 챗봇 버튼 추가 */}
+      {/* ✅ AI 챗봇 버튼 */}
       <Link to="/chatbot" className="chatbot-button">
-       🌞 햇님이와 대화하기
+        🌞 햇님이와 대화하기
+      </Link>
+
+      {/* ✅ SNS 이동 버튼 추가 */}
+      <Link to="/sns" className="sns-button">
+         SNS 
       </Link>
 
       {/* 🔍 검색 & 정렬 컨테이너 */}

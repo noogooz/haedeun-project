@@ -2462,3 +2462,71 @@ button, input {
   touch-action: manipulation; /* 터치 반응 개선 */
   font-size: 16px; /* 모바일에서도 글씨가 너무 작지 않도록 */
 }
+/* ✅ SNS 버튼 스타일 */
+.sns-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #6d5dfc, #9a4eff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.sns-button:hover {
+  background: linear-gradient(135deg, #9a4eff, #6d5dfc);
+  transform: scale(1.05);
+}
+/* ✅ SNS 버튼 스타일 (길이 조정) */
+.sns-button {
+  display: inline-block; /* 🔥 버튼이 내용 크기만큼만 차지하도록 변경 */
+  padding: 8px 14px; /* 🔥 내부 여백 줄이기 */
+  background: linear-gradient(135deg, #6d5dfc, #9a4eff);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px; /* 🔥 글자 크기 줄이기 */
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.sns-button:hover {
+  background: linear-gradient(135deg, #9a4eff, #6d5dfc);
+  transform: scale(1.05);
+}
+/* ✅ SNS 버튼 스타일 (더 컴팩트하게 수정) */
+.sns-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px; /* 🔥 버튼 너비 줄이기 */
+  height: 36px; /* 🔥 버튼 높이 줄이기 */
+  background: linear-gradient(135deg, #6d5dfc, #9a4eff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px; /* 🔥 글자 크기 살짝 키우기 */
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.sns-button:hover {
+  background: linear-gradient(135deg, #9a4eff, #6d5dfc);
+  transform: scale(1.08); /* 🔥 마우스 올리면 살짝 확대 */
+}
+
+/* ✅ SNS 버튼 컨테이너 (가운데 정렬) */
+.sns-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
