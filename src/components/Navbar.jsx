@@ -10,6 +10,7 @@ export default function Navbar() {
         <Link to="/characters">🎭 캐릭터</Link>
         <Link to="/world">🌎 세계관</Link>
         <Link to="/guestbook">📖 방명록</Link>
+        
       </div>
     </nav>
   );

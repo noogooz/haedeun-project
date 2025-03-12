@@ -383,4 +383,56 @@
       margin: 0 10px; /* 🔥 모바일 간격 조정 */
     }
   }
+  .navbar {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 0;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 600px; /* 네비게이션 최대 너비 제한 */
+  }
+  
+  .navbar-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 모바일에서도 중앙 정렬 */
+    gap: 15px; /* 간격 추가 */
+  }
+  
+  .navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  
+  .navbar-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* ✅ 모바일에서 한 줄로 정렬 */
+  @media (max-width: 768px) {
+    .navbar {
+      width: 100%;
+      padding: 10px;
+    }
+    
+    .navbar-links {
+      flex-direction: row; /* 가로 정렬 */
+      flex-wrap: nowrap; /* 한 줄로 유지 */
+      overflow-x: auto; /* 넘칠 경우 가로 스크롤 허용 */
+      justify-content: center;
+    }
+  
+    .navbar-links a {
+      white-space: nowrap; /* 줄바꿈 방지 */
+      padding: 8px 10px;
+    }
+  }
   
