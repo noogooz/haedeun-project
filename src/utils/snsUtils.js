@@ -33,15 +33,32 @@ const managePostLimit = async () => {
   }
 };
 
-// ✅ SNS 게시글 업로드 (중복 방지)
+// ✅ Firestore에서 가장 최근 게시물 내용 가져오기
+export const getLastPost = async () => {
+  const q = query(collection(db, "snsPosts"), orderBy("timestamp", "desc"));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.length > 0 ? snapshot.docs[0].data().content : null;
+};
+
+// ✅ 중복 방지 플래그 추가
+let isPosting = false;
+
 export const postNewStatus = async () => {
+  if (isPosting) {
+    console.log("⏳ 이미 게시물을 올리는 중입니다. 중복 실행 방지!");
+    return;
+  }
+
   try {
+    isPosting = true; // 🚀 실행 시작
+
     const lastPostTime = await getLastPostTime();
     const now = Date.now();
     const minInterval = 2 * 60 * 60 * 1000; // 최소 2시간 (7200000ms)
 
     if (lastPostTime && now - lastPostTime < minInterval) {
       console.log("⏳ 아직 게시물을 올릴 시간이 아님!");
+      isPosting = false;
       return;
     }
 
@@ -50,10 +67,9 @@ export const postNewStatus = async () => {
     let lastPostContent = await getLastPost();
     do {
       newStatus = statusMessages[Math.floor(Math.random() * statusMessages.length)];
-    } while (newStatus === lastPostContent); // ✅ 이전 게시물과 같은 내용 방지
+    } while (newStatus === lastPostContent);
 
-    // 📌 Firestore에 게시글 추가 전에 게시물 개수 관리
-    await managePostLimit();
+    await managePostLimit(); // ✅ 게시물 개수 관리
 
     // 📝 Firestore에 새로운 게시글 추가
     const newPostRef = await addDoc(collection(db, "snsPosts"), {
@@ -61,12 +77,12 @@ export const postNewStatus = async () => {
       content: newStatus,
       timestamp: serverTimestamp(),
       profileImage: "/images/hatnim-profile.png",
-      likes: 0, // 좋아요 기본값
+      likes: 0,
     });
 
     console.log(`📢 [햇님이 SNS] 새로운 게시글: "${newStatus}"`);
 
-    // ✅ **게시글이 생성되면 자동으로 comments 컬렉션을 추가!**
+    // ✅ **게시글이 생성되면 자동으로 comments 컬렉션을 추가**
     await setDoc(doc(db, `snsPosts/${newPostRef.id}/comments`, "placeholder"), {
       text: "댓글을 남겨보세요!",
       timestamp: serverTimestamp(),
@@ -74,11 +90,14 @@ export const postNewStatus = async () => {
 
     console.log(`📝 [댓글 자동 생성] ${newPostRef.id} 게시글에 comments 컬렉션 생성!`);
 
-    // ⏳ **게시글 업로드 간격: 랜덤 3~8시간**
-    const nextPostDelay = Math.random() * (28800000 - 10800000) + 10800000; // 🔥 3~8시간 (10800000ms ~ 28800000ms)
-    
+    // ✅ 실행이 끝나면 플래그 해제
+    isPosting = false;
+
+    // ⏳ **랜덤 시간 간격 (3~8시간) 후 다음 게시물 업로드**
+    const nextPostDelay = Math.random() * (28800000 - 10800000) + 10800000; 
     setTimeout(postNewStatus, nextPostDelay);
   } catch (error) {
     console.error("🚨 Firestore에 게시물 추가 실패:", error);
+    isPosting = false;
   }
 };
