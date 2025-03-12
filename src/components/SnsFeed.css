@@ -1358,4 +1358,53 @@
       margin: 10px auto !important; /* 완벽한 중앙 정렬 */
     }
   }
-                         
+/* ✅ 전체 페이지 중앙 정렬 */
+.sns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 중앙 정렬 */
+    width: 100%;
+    min-height: 100vh; /* 화면 전체 높이 확보 */
+    position: relative;
+  }
+  
+  /* ✅ SNS 배경 박스 (회색 박스) */
+  .sns-background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 내부 요소 중앙 정렬 */
+    width: 90%;
+    max-width: 500px; /* PC에서도 적절한 크기 유지 */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 완벽한 중앙 정렬 */
+  }
+  
+  /* ✅ 게시물 카드 */
+  .sns-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* ✅ 모바일에서도 중앙 정렬 유지 */
+  @media (max-width: 768px) {
+    .sns-background {
+      width: 90%;
+      max-width: 400px;
+    }
+  
+    .sns-post {
+      width: 85%;
+      max-width: 350px;
+      margin: 10px auto;
+    }
+  }
+                           
