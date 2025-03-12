@@ -1202,5 +1202,90 @@
       margin: 10px auto; /* 중앙 정렬 */
     }
   }
-          
+/* ✅ 전체 컨테이너 */
+.sns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px; /* 최대 너비 제한 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 20px;
+  }
+  
+  /* ✅ SNS 피드 */
+  .sns-feed {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* ✅ SNS 카드 (게시물) */
+  .sns-post {
+    width: 95%;
+    max-width: 420px; /* 모바일에서 더 작게 조정 */
+    background-color: #222; /* 다크 테마 */
+    color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ✅ 댓글 입력란 & 버튼 정렬 */
+  .comment-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .comment-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .comment-input button {
+    white-space: nowrap; /* 버튼 크기 유지 */
+    padding: 10px 14px;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  /* ✅ 모바일 대응 */
+  @media (max-width: 768px) {
+    .sns-container {
+      padding: 10px;
+      max-width: 100%;
+    }
+  
+    .sns-feed {
+      width: 100%;
+      align-items: center; /* 중앙 정렬 */
+    }
+  
+    .sns-post {
+      width: 90%;
+      max-width: 380px; /* 모바일에서 크기 조정 */
+      margin: 10px auto;
+    }
+  
+    .comment-input {
+      flex-direction: row;
+      align-items: center;
+    }
+  
+    .comment-input button {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  }
+            
                       
