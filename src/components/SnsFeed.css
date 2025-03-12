@@ -1032,3 +1032,29 @@
         margin: 10px auto !important;
     }
 }
+/* ✅ 모바일 화면에서만 적용 */
+@media (max-width: 768px) {
+    /* 🔥 첫 번째 박스 (SNS 배경 박스) */
+    .sns-background {
+        width: 90% !important; /* ✅ 너비를 더 줄여서 넘치지 않도록 */
+        max-width: 320px !important;
+        padding: 20px !important;
+        border-radius: 15px !important;
+    }
+
+    /* 🔥 두 번째 박스 (게시물 리스트 감싸는 박스) */
+    .sns-feed {
+        width: 100%;
+        max-width: 100% !important; /* ✅ 첫 번째 박스를 넘지 않게 설정 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 🔥 개별 게시물 박스 (sns-post) */
+    .sns-post {
+        width: 85% !important; /* ✅ 게시물 크기 줄이기 */
+        max-width: 260px !important; /* ✅ 첫 번째 박스를 넘지 않도록 조정 */
+        margin: 10px auto !important;
+    }
+}
