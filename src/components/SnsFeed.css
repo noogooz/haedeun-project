@@ -1468,3 +1468,34 @@
         margin: 10px auto;
     }
 }
+/* ✅ 기본 SNS 게시물 스타일 (PC에서는 기존 크기 유지) */
+.sns-post {
+    width: 92%;
+    max-width: 400px; /* PC에서는 기존 크기 유지 */
+    background-color: #222;
+    color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ 모바일에서만 게시물 크기 조정 */
+@media (max-width: 768px) {
+    .sns-feed {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .sns-post {
+        width: 80% !important;  /* 🔥 모바일에서 크기 줄이기 */
+        max-width: 280px !important; /* 기존보다 더 작게 */
+        margin: 10px auto !important; /* 중앙 정렬 */
+    }
+
+    .comment-input {
+        width: 90%;
+        max-width: 250px; /* 댓글 입력란도 크기 줄이기 */
+    }
+}
