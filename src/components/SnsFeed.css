@@ -1257,4 +1257,63 @@
       font-size: 0.9rem !important; /* 모바일에서 댓글 입력란 폰트 크기 조정 */
     }
   }
-                     
+/* ✅ 전체 SNS 컨테이너 중앙 정렬 */
+.sns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* ✅ SNS 피드 전체 중앙 정렬 */
+  .sns-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* ✅ 기존 PC 스타일 유지 */
+  .sns-post {
+    width: 92%;
+    max-width: 400px; /* PC에서 기존 크기 유지 */
+    background-color: #222;
+    color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ✅ 모바일에서만 게시물 크기와 정렬 조정 */
+  @media (max-width: 768px) {
+    .sns-feed {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .sns-post {
+      width: 80% !important; /* 기존보다 크기 조정 */
+      max-width: 320px !important; /* 크기 더 줄이기 */
+      margin: 10px auto !important; /* 중앙 정렬 */
+    }
+  
+    .comment-input {
+      width: 100%;
+      display: flex;
+      justify-content: center; /* 댓글 입력란도 중앙 정렬 */
+    }
+  
+    .comment-input input {
+      width: 75% !important; /* 댓글 입력창 크기 조정 */
+    }
+  
+    .like-button {
+      display: flex;
+      justify-content: center;
+      width: 100%; /* 좋아요 버튼도 중앙 정렬 */
+    }
+  }
+                       
