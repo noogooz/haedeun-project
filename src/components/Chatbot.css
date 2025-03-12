@@ -286,5 +286,32 @@
     border-radius: 10px;
     max-width: 60%;
   }
-        
+  @media (max-width: 768px) {
+    .chatbot-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* 중앙 정렬 */
+      justify-content: center;
+      text-align: center;
+      width: 90%; /* 가로 크기 조절 */
+      max-width: 400px; /* 최대 크기 설정 */
+      margin: 0 auto; /* 중앙 정렬 */
+      position: relative; /* 위치 고정 */
+    }
+  
+    .chatbot-messages {
+      width: 100%; /* 메시지 박스 크기 조절 */
+      max-height: 60vh; /* 높이 제한 */
+      overflow-y: auto; /* 스크롤 가능하도록 설정 */
+    }
+  
+    .chatbot-input-container {
+      width: 100%; /* 입력창 너비 조정 */
+    }
+  
+    .chatbot-title {
+      font-size: 18px; /* 모바일에서 글씨 크기 조정 */
+    }
+  }
+      
   
