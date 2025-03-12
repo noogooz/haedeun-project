@@ -980,3 +980,29 @@
         margin: 10px auto !important;
     }
 }
+/* ✅ 모바일 전용 스타일 */
+@media (max-width: 768px) {
+    /* 🔥 첫 번째 박스 (SNS 전체 배경 박스) 크기 조정 */
+    .sns-background {
+        width: 90% !important;
+        max-width: 350px !important; /* 🔥 너무 넓지 않게 제한 */
+        padding: 20px !important;
+        border-radius: 15px !important;
+    }
+
+    /* 🔥 게시물 리스트 감싸는 박스 (SNS 피드) */
+    .sns-feed {
+        width: 100%;
+        max-width: 320px !important; /* 🔥 첫 번째 박스를 넘지 않게 조정 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 🔥 개별 게시물 박스 */
+    .sns-post {
+        width: 90% !important;
+        max-width: 280px !important; /* 🔥 게시물 크기를 첫 번째 박스보다 작게 조정 */
+        margin: 10px auto !important;
+    }
+}
