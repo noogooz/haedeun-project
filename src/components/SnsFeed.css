@@ -1412,27 +1412,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* 🔥 중앙 정렬 */
+    justify-content: flex-start; /* 상단에서 시작 */
     width: 100%;
     min-height: 100vh;
     padding: 50px 0;
     position: relative;
 }
 
-/* ✅ SNS 배경 박스 (두 번째 박스, 가운데 회색 박스) */
+/* ✅ SNS 배경 박스 (회색 박스) */
 .sns-background {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center; /* 내부 요소 중앙 정렬 */
-    width: 90%;
+    width: 92%;
     max-width: 500px;
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 20px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* 🔥 좌우 중앙 정렬 */
+    position: relative; /* 🔥 `absolute` 대신 `relative` */
+    margin: 0 auto; /* ✅ 중앙 정렬 */
 }
 
 /* ✅ SNS 게시물 피드 */
@@ -1445,27 +1444,27 @@
 
 /* ✅ 개별 게시물 카드 */
 .sns-post {
-    width: 85%; /* 🔥 모바일에서 크기 조정 */
-    max-width: 360px; /* 기존보다 약간 더 줄이기 */
+    width: 90%; /* 🔥 모바일에서 크기 조정 */
+    max-width: 340px; /* 기존보다 더 줄이기 */
     background: rgba(40, 40, 60, 0.95);
     border-radius: 16px;
     padding: 18px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
     color: #ffffff;
     text-align: center;
-    margin: 15px auto; /* 🔥 중앙 정렬 */
+    margin: 15px auto; /* ✅ 중앙 정렬 */
 }
 
-/* ✅ 모바일에서 크기 최적화 */
+/* ✅ 모바일 중앙 정렬 보장 */
 @media (max-width: 768px) {
     .sns-background {
-        width: 92%;
-        max-width: 400px; /* 모바일에서 중앙 정렬 유지 */
+        width: 95%; /* 모바일에서 더 넓게 */
+        max-width: 400px;
     }
 
     .sns-post {
-        width: 90%; /* 🔥 모바일에서 크기 조정 */
-        max-width: 320px;
-        margin: 12px auto; /* 🔥 중앙 정렬 */
+        width: 92%;
+        max-width: 310px; /* 모바일에서 크기 줄이기 */
+        margin: 10px auto;
     }
 }
