@@ -957,3 +957,26 @@
         padding: 6px 8px;
     }
 }
+/* ✅ 모바일 전용 스타일 */
+@media (max-width: 768px) {
+    .sns-background {
+        width: 85% !important; /* 🔥 크기 줄이기 */
+        max-width: 360px !important; /* 기존보다 40px 줄임 */
+        height: auto !important; /* 🔥 높이를 게시물 개수에 맞춰 자동 조정 */
+        padding: 15px !important; /* 내부 패딩 줄이기 */
+    }
+
+    .sns-feed {
+        width: 100%;
+        max-width: 320px !important; /* 🔥 게시물 크기 맞춰서 줄이기 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sns-post {
+        width: 80% !important; /* 🔥 게시물 크기 조정 */
+        max-width: 280px !important; /* 기존보다 20px 줄이기 */
+        margin: 10px auto !important;
+    }
+}
