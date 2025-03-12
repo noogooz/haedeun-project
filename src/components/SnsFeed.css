@@ -1316,4 +1316,46 @@
       width: 100%; /* 좋아요 버튼도 중앙 정렬 */
     }
   }
-                       
+/* ✅ SNS 전체 컨테이너 (첫 번째 박스) */
+.sns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    width: 100%;
+    position: relative;
+  }
+  
+  /* ✅ 두 번째 박스 (SNS 배경) */
+  .sns-background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 내부 요소들 중앙 정렬 */
+    width: 90%;
+    max-width: 500px; /* PC에서도 적절한 크기 유지 */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+  }
+  
+  /* ✅ 세 번째 박스 (SNS 카드) */
+  .sns-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* ✅ 모바일에서만 크기 조정 */
+  @media (max-width: 768px) {
+    .sns-background {
+      width: 90% !important; /* 더 넓게 조정 */
+    }
+  
+    .sns-post {
+      width: 85% !important;
+      max-width: 350px !important;
+      margin: 10px auto !important; /* 완벽한 중앙 정렬 */
+    }
+  }
+                         
