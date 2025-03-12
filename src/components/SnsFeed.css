@@ -1111,5 +1111,46 @@
   .sns-post:hover {
     transform: none; /* 🔥 크기 변하는 효과 제거 */
   }
-      
+  .sns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    justify-content: center;
+    width: 100%;
+    max-width: 600px; /* 최대 너비 제한 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 20px;
+  }
+  
+  .sns-feed {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 카드 중앙 정렬 */
+  }
+  
+  .sns-post {
+    width: 100%;
+    max-width: 500px; /* 카드 최대 너비 제한 */
+    background-color: #222; /* 어두운 배경 */
+    color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ✅ 모바일 대응 */
+  @media (max-width: 768px) {
+    .sns-container {
+      padding: 10px;
+      max-width: 95%; /* 모바일에서 더 넓게 */
+    }
+  
+    .sns-post {
+      width: 100%;
+      max-width: 90%; /* 모바일에서 더 적절한 크기 */
+    }
+  }
+        
                       
