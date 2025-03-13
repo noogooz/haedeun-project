@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
-import { Link } from "react-router-dom"; // ✅ 추가
-import CharacterCard from "/src/components/CharacterCard"; // ✅ 절대 경로 사용
-import characterData from "/src/data/characters.json"; // ✅ 절대 경로 사용
+import { Link } from "react-router-dom";
+import CharacterCard from "/src/components/CharacterCard";
+import characterData from "/src/data/characters.json";
+import HatnimeeWeather from "../components/HatnimeeWeather.jsx"; // ✅ 햇님이 날씨 반영 기능 추가
 import gsap from "gsap";
 
 export default function CharactersPage() {
@@ -62,14 +63,19 @@ export default function CharactersPage() {
     <div className="characters-container">
       <h1 className="characters-title">🌟 캐릭터 소개</h1>
 
+      {/* ✅ 햇님이 날씨 반영 기능 추가 */}
+      <div className="hatnimee-weather-box">
+        <HatnimeeWeather />
+      </div>
+
       {/* ✅ AI 챗봇 버튼 */}
       <Link to="/chatbot" className="chatbot-button">
         🌞 햇님이와 대화하기
       </Link>
 
-      {/* ✅ SNS 이동 버튼 추가 */}
+      {/* ✅ SNS 이동 버튼 */}
       <Link to="/sns" className="sns-button">
-         SNS 
+        SNS
       </Link>
 
       {/* 🔍 검색 & 정렬 컨테이너 */}
@@ -95,6 +101,7 @@ export default function CharactersPage() {
         </div>
       </div>
 
+      {/* ✅ 캐릭터 카드 리스트 */}
       <div ref={cardsRef} className="characters-grid">
         {filteredCharacters.map((char) => (
           <CharacterCard

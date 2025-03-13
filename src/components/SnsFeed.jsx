@@ -9,6 +9,7 @@ import {
   doc,
   getDoc,
   addDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 import { postNewStatus } from "../utils/snsUtils"; // ✅ 게시물 업로드 함수
 import "./SnsFeed.css";
@@ -17,6 +18,9 @@ export default function SnsFeed() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState({});
   const [newComment, setNewComment] = useState({});
+  const [weatherData, setWeatherData] = useState(null);
+
+
 
   useEffect(() => {
     const q = query(collection(db, "snsPosts"), orderBy("timestamp", "desc"));
@@ -27,7 +31,7 @@ export default function SnsFeed() {
       if (postList.length > 0) {
         const lastPostTime = postList[0].timestamp?.toMillis();
         const now = Date.now();
-        const minInterval = 2 * 60 * 60 * 1000; // 최소 2시간
+        const minInterval = 2 * 60 * 60 * 1000;
 
         if (lastPostTime && now - lastPostTime >= minInterval) {
           console.log("🔄 자동 게시물 추가 중...");
@@ -39,30 +43,29 @@ export default function SnsFeed() {
     return () => unsubscribe();
   }, []);
 
-  // ✅ 각 게시물별 댓글을 Firestore에서 가져오기
+  // ✅ Firestore에서 댓글 가져오기 (정상 작동하도록 수정)
   useEffect(() => {
+    const unsubscribeMap = {};
     posts.forEach((post) => {
       const commentsRef = collection(db, `snsPosts/${post.id}/comments`);
       const q = query(commentsRef, orderBy("timestamp", "asc"));
 
-      const unsubscribe = onSnapshot(
-        q,
-        (snapshot) => {
-          setComments((prevComments) => ({
-            ...prevComments,
-            [post.id]: snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
-          }));
-        },
-        (error) => {
-          console.error(`🚨 Firestore 댓글 오류 (${post.id}):`, error);
-        }
-      );
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        setComments((prevComments) => ({
+          ...prevComments,
+          [post.id]: snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+        }));
+      });
 
-      return () => unsubscribe();
+      unsubscribeMap[post.id] = unsubscribe;
     });
-  }, [posts]); // ✅ posts 변경 시마다 실행
 
-  // ✅ 사용자 ID 가져오기 (localStorage 사용)
+    return () => {
+      Object.values(unsubscribeMap).forEach((unsub) => unsub());
+    };
+  }, [posts]);
+
+  // ✅ 사용자 ID 가져오기
   const getUserId = () => {
     let userId = localStorage.getItem("snsUserId");
     if (!userId) {
@@ -72,7 +75,7 @@ export default function SnsFeed() {
     return userId;
   };
 
-  // ✅ 좋아요 기능 (중복 방지)
+  // ✅ 좋아요 기능
   const handleLike = async (postId) => {
     const userId = getUserId();
     const postRef = doc(db, "snsPosts", postId);
@@ -84,17 +87,15 @@ export default function SnsFeed() {
       const likedUsers = post.likedUsers || [];
 
       if (likedUsers.includes(userId)) {
-        // ✅ 이미 좋아요를 눌렀다면 취소
         const newLikedUsers = likedUsers.filter((id) => id !== userId);
         await updateDoc(postRef, { likes: likes - 1, likedUsers: newLikedUsers });
       } else {
-        // ✅ 좋아요 추가
         await updateDoc(postRef, { likes: likes + 1, likedUsers: [...likedUsers, userId] });
       }
     }
   };
 
-  // ✅ 댓글 추가 기능
+  // ✅ 댓글 추가 기능 (Firestore에서 `serverTimestamp()` 사용)
   const handleCommentSubmit = async (postId) => {
     if (!newComment[postId]?.trim()) return;
 
@@ -102,20 +103,20 @@ export default function SnsFeed() {
     await addDoc(commentsRef, {
       userId: getUserId(),
       text: newComment[postId],
-      timestamp: new Date(),
+      timestamp: serverTimestamp(), // ✅ Firestore의 서버 타임스탬프 사용
     });
 
     setNewComment((prev) => ({ ...prev, [postId]: "" }));
 
-    // ✅ 햇님이 자동 답변 확률 (30% 확률로 답변)
+    // ✅ 햇님이 자동 답변 (30% 확률)
     if (Math.random() < 0.3) {
       setTimeout(() => {
         addDoc(commentsRef, {
           userId: "햇님이",
           text: getHatnimeeReply(),
-          timestamp: new Date(),
+          timestamp: serverTimestamp(),
         });
-      }, 2000); // 2초 후 답변
+      }, 2000);
     }
   };
 
@@ -132,7 +133,7 @@ export default function SnsFeed() {
     return replies[Math.floor(Math.random() * replies.length)];
   };
 
-  // ✅ 타임스탬프 변환 (예: "2시간 전")
+  // ✅ 타임스탬프 변환 함수
   const timeAgo = (timestamp) => {
     if (!timestamp?.seconds) return "방금 전";
     const now = new Date();
@@ -148,6 +149,9 @@ export default function SnsFeed() {
   return (
     <div className="sns-container">
       <h2 className="sns-title"> SNS</h2>
+
+    
+
       <div className="sns-feed">
         {posts.map((post) => (
           <div key={post.id} className="sns-post">
