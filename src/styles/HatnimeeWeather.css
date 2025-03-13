@@ -3,8 +3,9 @@
     align-items: center;
     justify-content: center;
     position: fixed;
-    top: 20px;
+    top: 60px; /* 화면을 더 위쪽으로 조정 */
     left: -300px; /* 처음에 화면 밖에 위치 */
+    z-index: 1000; /* 다른 요소보다 위에 배치 */
     animation: slideIn 1s ease-out forwards, slideOut 1s ease-in 4s forwards;
   }
   
@@ -68,8 +69,9 @@
   /* 모바일 반응형 스타일 */
   @media (max-width: 768px) {
     .hatnimee-weather-container {
-      top: 10px;
+      top: 50px; /* 모바일에서도 위쪽으로 조정 */
       left: -250px;
+      z-index: 1000; /* 다른 요소 위에 배치 */
       animation: slideInMobile 1s ease-out forwards, slideOutMobile 1s ease-in 4s forwards;
     }
   
@@ -106,3 +108,4 @@
       font-size: 12px;
     }
   }
+  
