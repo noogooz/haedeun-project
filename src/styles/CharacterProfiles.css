@@ -161,3 +161,29 @@
     background-color: rgba(255, 255, 255, 0.35);
     transform: scale(1.03);
 }
+.characters-title {
+    font-size: 3rem; /* 기본 크기 유지 */
+    font-weight: bold;
+    color: #e0e0ff;
+    text-shadow: 4px 4px 8px rgba(255, 255, 255, 0.5);
+    margin-bottom: 30px;
+    position: relative;
+    white-space: nowrap; /* 🚀 줄바꿈 방지 */
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center; /* 중앙 정렬 */
+}
+
+/* 📱 모바일에서 글씨 크기 조정 */
+@media (max-width: 768px) {
+    .characters-title {
+        font-size: 2.4rem; /* 화면이 작을 때 자동 크기 조정 */
+    }
+}
+
+/* 📱 작은 모바일 화면에서 추가 조정 */
+@media (max-width: 480px) {
+    .characters-title {
+        font-size: 2rem; /* 더 작은 화면에서는 폰트 축소 */
+    }
+}
