@@ -66,26 +66,13 @@
 
 /* 캐릭터 선택창 스타일 */
 .character-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    justify-content: center;
-    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 중앙 정렬 */
+    gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-}
-
-@media (max-width: 1024px) {
-    .character-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .character-grid {
-        grid-template-columns: repeat(1, 1fr);
-    }
 }
 
 /* 캐릭터 카드 */
@@ -107,7 +94,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.3s ease-in-out; /* ✅ hover 효과가 항상 부드럽게 적용됨 */
+    transition: all 0.3s ease-in-out;
+}
+
+/* 📱 모바일 (768px 이하) 스타일 조정 */
+@media (max-width: 768px) {
+    .character-card {
+        width: 90%;  /* 모바일에서 너비 조정 */
+        height: auto; /* 높이 자동 */
+        padding: 15px;
+    }
 }
 
 /* ✅ 검색 전에도 hover 효과 항상 유지 */
