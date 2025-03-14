@@ -187,3 +187,58 @@
         font-size: 2rem; /* 더 작은 화면에서는 폰트 축소 */
     }
 }
+/* 🔍 검색 & 정렬 컨테이너 크기 조정 */
+.search-sort-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.search-input, .sort-select {
+    padding: 6px 12px;  /* 크기 줄임 */
+    border-radius: 18px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    outline: none;
+    text-align: center;
+    font-size: 0.85rem;  /* 글자 크기 줄임 */
+    backdrop-filter: blur(6px);
+    width: 180px; /* 너비 조정 */
+}
+
+.sort-select {
+    cursor: pointer;
+}
+
+/* 📱 모바일에서 버튼 크기 조정 */
+@media (max-width: 768px) {
+    .search-input, .sort-select {
+        width: 160px; /* 더 작은 화면에서 너비 감소 */
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+    .chatbot-button, .sns-button {
+        padding: 6px 14px;  /* 버튼 크기 줄이기 */
+        font-size: 1rem;  /* 글자 크기 감소 */
+        border-radius: 20px;
+        margin: 6px;
+    }
+}
+
+/* 📱 작은 모바일 화면 (480px 이하) */
+@media (max-width: 480px) {
+    .search-input, .sort-select {
+        width: 150px;
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+
+    .chatbot-button, .sns-button {
+        padding: 5px 12px; 
+        font-size: 0.9rem; 
+    }
+}
