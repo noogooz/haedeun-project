@@ -2186,41 +2186,9 @@ body {
   margin-left: 5px;
 }
 
-/* ✅ 구름 & 토피트 카드만 아래로 살짝 내리기 */
-.character-card:nth-child(5),
-.character-card:nth-child(6) {
-  margin-top: 30px;
-}
-.characters-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3열 정렬 */
-  gap: 20px; /* 카드 간격 */
-  justify-content: center;
-  align-items: start; /* 카드 높이 맞춤 */
-}
 
-/* 📌 캐릭터 카드 */
-.character-card {
-  width: 250px;
-  height: 180px; /* ✅ 카드 높이 고정 */
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-/* 📌 카드 hover 시 효과 */
-.character-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
+
 
 /* 📌 캐릭터 이름 */
 .character-name {
@@ -2242,45 +2210,9 @@ body {
   margin-left: 5px;
 }
 
-/* ✅ 구름 & 토피트 카드만 아래로 조정 (숲은 유지) */
-.character-card:nth-child(5) {
-  transform: translateY(20px); /* ✅ 구름 카드만 내려감 */
-}
 
-.character-card:nth-child(6) {
-  transform: translateY(20px); /* ✅ 토피트 카드만 내려감 */
-}
-.characters-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* ✅ 3x2 정렬 유지 */
-  gap: 30px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-/* 🌟 카드 디자인 */
-.character-card {
-  width: 250px;
-  height: 200px; /* ✅ 모든 카드 높이를 200px로 통일 */
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* ✅ 세로 중앙 정렬 */
-  align-items: center; /* ✅ 가로 중앙 정렬 */
-  text-align: center;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
 
-/* 📌 카드 hover 효과 */
-.character-card:hover {
-  transform: scale(1.05); /* ✅ 너무 과하지 않게 부드러운 확대 효과 */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-}
 
 /* ✨ 글씨 중앙 정렬 */
 .character-name {
@@ -2305,43 +2237,9 @@ body {
   margin-left: 5px;
 }
 
-/* ✅ 숲, 구름, 토피트 카드 위치 조정 */
-.character-card:nth-child(4),
-.character-card:nth-child(5),
-.character-card:nth-child(6) {
-  transform: translateY(15px); /* ✅ 똑같이 내려서 높이 맞추기 */
-}
-.characters-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* ✅ 3열 구조 유지 */
-  gap: 30px; /* ✅ 카드 사이 간격 */
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-/* 🌟 카드 디자인 */
-.character-card {
-  width: 250px;
-  height: 180px; /* ✅ 모든 카드 높이를 180px로 통일 */
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* ✅ 세로 중앙 정렬 */
-  align-items: center; /* ✅ 가로 중앙 정렬 */
-  text-align: center;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
 
-/* 📌 카드 hover 효과 */
-.character-card:hover {
-  transform: scale(1.05); /* ✅ hover 시 살짝 확대 */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-}
+
 
 /* ✨ 글씨 중앙 정렬 */
 .character-name {
@@ -2366,12 +2264,7 @@ body {
   margin-left: 5px;
 }
 
-/* ✅ 숲, 구름, 토피트 카드 위치 정렬 */
-.character-card:nth-child(4),
-.character-card:nth-child(5),
-.character-card:nth-child(6) {
-  margin-top: 20px; /* ✅ 정확히 20px 내려서 정렬 맞추기 */
-}
+
 .chatbot-button {
   display: block;
   width: fit-content;
