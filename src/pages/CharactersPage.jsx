@@ -6,10 +6,10 @@ import "../styles/CharacterProfiles.css";
 
 // 캐릭터 데이터
 const characters = [
-  { name: "햇님이", image: "/images/hatnimee2.png", description: "밝고 활발한 태양의 요정" },
-  { name: "달님이", image: "/images/dalnim.png", description: "신비롭고 차분한 달의 요정" },
-  { name: "트링이", image: "/images/tringi.png", description: "숲과 차를 사랑하는 요정" },
-  { name: "별님이", image: "/images/byulnim.png", description: "시크한 걸크러쉬 별의 요정" },
+  { name: "햇님", image: "/images/hatnimee2.png", description: "밝고 활발한 태양의 요정" },
+  { name: "달님", image: "/images/dalnim.png", description: "신비롭고 차분한 달의 요정" },
+  { name: "트링", image: "/images/tringi.png", description: "숲과 차를 사랑하는 요정" },
+  { name: "별님", image: "/images/byulnim.png", description: "시크한 걸크러쉬 별의 요정" },
   { name: "구르미", image: "/images/gurumi.png", description: "구름을 타고 다니는 자유로운 요정" },
   { name: "썬더", image: "/images/thunder.png", description: "번개의 빠른 속도를 가진 요정" },
   { name: "토피트", image: "/images/topite.png", description: "귀여운 사랑의 요정" },
