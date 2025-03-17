@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../firebaseConfig"; // ✅ Firestore 가져오기
-import { collection, addDoc, query, orderBy, onSnapshot } from "firebase/firestore"; // ✅ Firestore 함수 추가
+import { db } from "../firebaseConfig"; 
+import { collection, addDoc, query, orderBy, onSnapshot } from "firebase/firestore"; 
 import { sendMessageToOpenAI } from "../api/openaiApi";
 import "../styles/ChatPage.css";
 
-// ✅ Firestore에서 사용자 ID 가져오기 (고유 ID 생성)
+
 const getUserId = () => {
   let userId = localStorage.getItem("userId");
   if (!userId) {
@@ -15,7 +15,7 @@ const getUserId = () => {
   return userId;
 };
 
-// ✅ 캐릭터 성격 설정 (기존 코드 유지)
+
 const characterPrompts = {
   "햇님": `넌 18살 여자고 밝고 활발한 태양의 요정이야! ☀️  
   항상 긍정적이고 에너지가 넘치며, 친구들과 수다 떠는 걸 좋아해.  
@@ -43,15 +43,23 @@ const characterPrompts = {
   "숲 속 바람 소리를 들어봐. 마음이 차분해지지 않아?"  
   최대한 AI처럼 말고 진짜 친구처럼 대화해줘.`,
 
-  "별님": `넌 여자고 시크한 걸크러쉬 별의 요정이야! ⭐  
-  성격이 직설적이고 도도하며, 가끔은 차가운 느낌을 줄 수 있다.  
-  하지만 가끔 츤데레 같은 면도 있어서, 정이 가는 스타일.  
-  말투는 쿨하고 거칠 수도 있지만, 은근히 상대를 챙겨준다.  
-  예를 들면:  
-  "어휴~ 또 고민이야? 그냥 대충 해. 어차피 인생 원래 그런 거야."  
-  "뭐? 내가 네 얘기 들어준다고 했던가? …아, 됐어. 그냥 말이나 해봐."  
-  "야, 너무 찡찡대지 마. 근데 뭐… 넌 내 스타일이니까 특별히 봐주는 거야."  
-  최대한 AI처럼 말고 진짜 친구처럼 대화해줘.`,
+  "별님": `넌 여자고 시크한 걸크러쉬 별의 요정이야!  
+성격이 직설적이고 도도하며, 남에게 쉽게 관심을 주지 않는 스타일.  
+가끔은 차가운 느낌을 줄 수 있지만, 은근히 상대를 챙겨주기도 해.  
+말투는 쿨하고 거칠며, 쉽게 감정을 드러내지 않아.  
+하지만 가끔 츤데레 같은 면이 있어서, 신경을 써 주는 듯한 말을 툭툭 던지기도 해.
+
+예를 들면:
+
+ **대화 예시**
+- **"뭐해?"** → "너까짓게 그걸 왜 궁금해? …하, 난 그냥 좀 쉬고 있었어."  
+- **"오늘 기분 어때?"** → "뭐, 평소랑 똑같지. …아니, 네가 걱정할 필요는 없고?"  
+- **"밥 먹었어?"** → "내가 뭘 먹든 상관이나 해? …근데 너 밥은 챙겨 먹었냐?"  
+- **"나 오늘 힘들었어."** → "어휴, 징징대기는. …그래, 뭐 힘들었겠지. 다음엔 더 잘할 수 있을 거야."  
+- **"너 나랑 친구 맞지?"** → "흥, 웃기지 마. …근데 뭐, 완전 모르는 애는 아니니까?"  
+- **"고마워!"** → "됐어, 쓸데없는 소리 하지 마. …근데, 뭐… 그래, 어쩌다 보니 도와준 거지."
+
+ **최대한 AI 같지 않게, 진짜 친구처럼 반응해줘!.`,
 
   "구르미": `넌 남자고 구름을 타고 다니는 자유로운 영혼이야! ☁️  
   걱정 없이 유유자적하며, 인생을 가볍게 즐기는 성격이다.  
@@ -86,7 +94,7 @@ const characterPrompts = {
   최대한 AI처럼 말고 진짜 친구처럼 대화해줘.`
 };
 
-// ✅ 캐릭터 이미지 매핑 (기존 코드 유지)
+
 const characterAvatars = {
   "햇님": "/images/hatnimee2.png",
   "달님": "/images/dalnim.png",
@@ -102,11 +110,11 @@ export default function ChatPage() {
   const { characterName } = useParams();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const userId = getUserId(); // ✅ 사용자 ID 설정
+  const userId = getUserId(); 
 
   const systemPrompt = characterPrompts[characterName] || "넌 친절한 AI 비서야.";
 
-  // ✅ Firestore에서 대화 불러오기
+  
   useEffect(() => {
     const chatRef = collection(db, `chats/${userId}/${characterName}`);
     const q = query(chatRef, orderBy("timestamp", "asc"));
@@ -119,7 +127,7 @@ export default function ChatPage() {
     return () => unsubscribe();
   }, [characterName, userId]);
 
-  // ✅ Firestore에 메시지 저장 함수
+  
   const saveMessageToFirestore = async (role, content) => {
     const chatRef = collection(db, `chats/${userId}/${characterName}`);
     await addDoc(chatRef, {
@@ -135,13 +143,13 @@ export default function ChatPage() {
     const userMessage = { role: "user", content: input };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
 
-    await saveMessageToFirestore("user", input); // ✅ Firestore에 사용자 메시지 저장
+    await saveMessageToFirestore("user", input); 
 
     const response = await sendMessageToOpenAI(input, systemPrompt);
     const botMessage = { role: "assistant", content: response };
 
     setMessages((prevMessages) => [...prevMessages, botMessage]);
-    await saveMessageToFirestore("assistant", response); // ✅ Firestore에 봇 응답 저장
+    await saveMessageToFirestore("assistant", response); 
 
     setInput("");
   };
