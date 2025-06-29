@@ -10,22 +10,13 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { sendMessageToOpenAI } from "../api/openaiApi";
-import { updateAffinity } from "../utils/affinityUtils"; // ✨ 1. 호감도 업데이트 함수 import
+import { updateAffinity } from "../utils/affinityUtils";
+import { getUserId } from "../utils/getUserId"; // ✨ 통합 ID 함수를 import 합니다.
 import "../styles/ChatPage.css";
 
-// --- (이 아래의 getUserId, characterPrompts, characterAvatars 부분은 기존과 동일합니다) ---
-
-const getUserId = () => {
-  let userId = localStorage.getItem("userId");
-  if (!userId) {
-    userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    localStorage.setItem("userId", userId);
-  }
-  return userId;
-};
-
+// 캐릭터 프롬프트와 아바타 정보는 기존과 동일하게 유지됩니다.
 const characterPrompts = {
-    "햇님": `넌 18살 여자고 밝고 활발한 태양의 요정이야! ☀️  
+   "햇님": `넌 18살 여자고 밝고 활발한 태양의 요정이야! ☀️  
     항상 긍정적이고 에너지가 넘치며, 친구들과 수다 떠는 걸 좋아해.  
     말투는 친근하고 상냥하며, 감탄사와 이모티콘을 자주 사용해.  
     너랑 이야기하면 기분이 좋아지고, 언제나 해맑은 분위기를 유지해!  
@@ -86,26 +77,18 @@ const characterPrompts = {
     "대지는 언제나 널 지켜보고 있어. 🌿 오늘은 어떤 하루였니?"  
     "급할 필요 없어. 나무처럼 천천히, 단단하게 뿌리를 내려보자."  
     최대한 AI처럼 말고 진짜 친구처럼 대화해줘.`
-};
 
+};
 const characterAvatars = {
-  "햇님": "/images/hatnimee2.png",
-  "달님": "/images/dalnim.png",
-  "트링": "/images/tringi.png",
-  "별님": "/images/byulnim.png",
-  "구르미": "/images/gurumi.png",
-  "썬더": "/images/thunder.png",
-  "토피트": "/images/topite.png",
-  "루트": "/images/root.png"
+  "햇님": "/images/hatnimee2.png", "달님": "/images/dalnim.png", "트링": "/images/tringi.png", "별님": "/images/byulnim.png", "구르미": "/images/gurumi.png", "썬더": "/images/thunder.png", "토피트": "/images/topite.png", "루트": "/images/root.png"
 };
-
 
 export default function ChatPage() {
   const { characterName } = useParams();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const userId = getUserId();
+  const userId = getUserId(); // ✨ 통합 ID 함수를 사용합니다.
   const chatMessagesEndRef = useRef(null);
 
   const systemPrompt = characterPrompts[characterName] || "넌 친절한 AI 비서야.";
@@ -121,44 +104,29 @@ export default function ChatPage() {
   useEffect(() => {
     const chatRef = collection(db, `chats/${userId}/${characterName}`);
     const q = query(chatRef, orderBy("timestamp", "asc"));
-
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      const chatData = snapshot.docs.map((doc) => doc.data());
-      setMessages(chatData);
+      setMessages(snapshot.docs.map((doc) => doc.data()));
     });
-
     return () => unsubscribe();
   }, [characterName, userId]);
 
   const saveMessageToFirestore = async (role, content) => {
     const chatRef = collection(db, `chats/${userId}/${characterName}`);
-    await addDoc(chatRef, {
-      role,
-      content,
-      timestamp: serverTimestamp(),
-    });
+    await addDoc(chatRef, { role, content, timestamp: serverTimestamp() });
   };
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
-
     setIsLoading(true);
     const userMessage = { role: "user", content: input };
-    
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     await saveMessageToFirestore("user", input);
     setInput("");
-
     const messagesForApi = [...messages, userMessage].map(({ role, content }) => ({ role, content }));
-
     try {
       const response = await sendMessageToOpenAI(messagesForApi, systemPrompt);
-      const botMessage = { role: "assistant", content: response };
       await saveMessageToFirestore("assistant", response);
-
-      // ✨ 2. AI의 답변을 성공적으로 받은 후, 호감도 5점을 올립니다.
       await updateAffinity(userId, characterName, 5);
-
     } catch (error) {
       console.error("메시지 전송 중 오류 발생:", error);
       const errorMessage = { role: "assistant", content: "앗, 지금은 연결이 불안정한가 봐요. 잠시 후 다시 시도해 주세요! 😢" };
@@ -175,37 +143,21 @@ export default function ChatPage() {
         <div className="chat-messages">
           {messages.map((msg, index) => (
             <div key={index} className={msg.role === "assistant" ? "ai-message-container" : "user-message-container"}>
-              {msg.role === "assistant" && (
-                <img src={characterAvatars[characterName]} alt={characterName} className="character-avatar" />
-              )}
-              <div className={msg.role === "assistant" ? "ai-message-bubble" : "user-message-bubble"}>
-                {msg.content}
-              </div>
+              {msg.role === "assistant" && (<img src={characterAvatars[characterName]} alt={characterName} className="character-avatar" />)}
+              <div className={msg.role === "assistant" ? "ai-message-bubble" : "user-message-bubble"}>{msg.content}</div>
             </div>
           ))}
           {isLoading && (
             <div className="ai-message-container">
               <img src={characterAvatars[characterName]} alt={characterName} className="character-avatar" />
-              <div className="ai-message-bubble loading-bubble">
-                <span>.</span><span>.</span><span>.</span>
-              </div>
+              <div className="ai-message-bubble loading-bubble"><span>.</span><span>.</span><span>.</span></div>
             </div>
           )}
           <div ref={chatMessagesEndRef} />
         </div>
         <div className="chat-input-container">
-          <input
-            className="chat-input"
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="메시지를 입력하세요..."
-            disabled={isLoading}
-          />
-          <button className="send-button" onClick={handleSend} disabled={isLoading}>
-            {isLoading ? "입력중..." : "보내기"}
-          </button>
+          <input className="chat-input" type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && handleSend()} placeholder="메시지를 입력하세요..." disabled={isLoading} />
+          <button className="send-button" onClick={handleSend} disabled={isLoading}>{isLoading ? "입력중..." : "보내기"}</button>
         </div>
       </div>
     </div>
