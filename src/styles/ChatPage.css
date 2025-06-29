@@ -1,0 +1,124 @@
+/* ✅ 채팅 박스 중앙 정렬 */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+/* ✅ 채팅 박스 */
+.chat-box {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ 채팅 메시지 박스 */
+.chat-messages {
+    overflow-y: auto;
+    max-height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* ✅ 사용자 메시지 (오른쪽 정렬) */
+.user-message-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.user-message-bubble {
+    background: #ffb86c; /* 주황색 */
+    color: #333;
+    padding: 12px 16px;
+    border-radius: 20px;
+    max-width: 60%;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+/* ✅ AI 메시지 (왼쪽 정렬) */
+.ai-message-container {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    gap: 12px;
+}
+
+.ai-message-bubble {
+    background: #6d42c7;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 18px;
+    text-align: left;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+/* ✅ 캐릭터 아바타 */
+.character-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* ✅ 입력창 컨테이너 */
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10px;
+}
+
+/* ✅ 입력창 */
+.chat-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #333;
+    outline: none;
+}
+
+/* ✅ 보내기 버튼 */
+.send-button {
+    width: 70px;
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #8f5fe8, #6d42c7);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ✅ 스크롤바 디자인 */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #8f5fe8;
+    border-radius: 8px;
+}

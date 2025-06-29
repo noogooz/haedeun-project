@@ -1,28 +1,51 @@
 import { db } from "../firebaseConfig";
-import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, doc, setDoc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  serverTimestamp,
+  doc,
+  deleteDoc,
+  limit, // limit을 import에 추가해야 합니다.
+} from "firebase/firestore";
+
+// ✨ 1. 캐릭터 정보 배열
+const charactersForSns = [
+    { name: "햇님이", profileImage: "/images/hatnim-profile.png", messages: ["오늘 날씨 최고! 다들 즐거운 하루 보내! ☀️", "새로운 마법 배우는 중! 너무 신나! 💪"] },
+    { name: "달님이", profileImage: "/images/dalnim.png", messages: ["고요한 밤, 떠오르는 생각의 조각들.", "오늘 밤 유독 별이 밝네."] },
+    { name: "별님이", profileImage: "/images/byulnim.png", messages: ["흥, 시끄러운 건 딱 질색이야.", "…별이나 보고 싶은 밤이네."] },
+    { name: "트링이", profileImage: "/images/tringi.png", messages: ["오늘 새로 덖은 찻잎의 향기가 정말 좋아. 숲의 향기가 가득. 🍵", "마음이 복잡할 땐 따뜻한 차 한 잔 어때?"] },
+    { name: "구르미", profileImage: "/images/gurumi.png", messages: ["구름 위에서 낮잠 자는 것만큼 좋은 건 없지~ ☁️", "오늘은 어디로 흘러가 볼까나~"] },
+    { name: "썬더", profileImage: "/images/thunder.png", messages: ["가만히 있는 건 좀이 쑤셔! 지금 당장 달려 나갈 사람! ⚡", "1분 1초가 아깝다! 뭐든 해보자고!"] },
+    { name: "토피트", profileImage: "/images/topite.png", messages: ["모두 모두 사랑해! 내 마음을 받아줘! 💖", "히힛~ 오늘따라 더 보고 싶네~?"] },
+    { name: "루트", profileImage: "/images/root.png", messages: ["오늘 숲에서 새로운 새싹이 돋아났어. 작은 생명의 경이로움. 🌱", "나무처럼, 서두르지 말고 단단하게."] }
+];
+
 
 // ✅ Firestore에서 최근 게시물 시간 가져오기
 const getLastPostTime = async () => {
-  const q = query(collection(db, "snsPosts"), orderBy("timestamp", "desc"));
+  const q = query(collection(db, "snsPosts"), orderBy("timestamp", "desc"), limit(1));
   const snapshot = await getDocs(q);
   return snapshot.docs.length > 0 ? snapshot.docs[0].data().timestamp?.toMillis() : null;
 };
 
 // ✅ Firestore에서 가장 최근 게시물 내용 가져오기
 export const getLastPost = async () => {
-  const q = query(collection(db, "snsPosts"), orderBy("timestamp", "desc"));
+  const q = query(collection(db, "snsPosts"), orderBy("timestamp", "desc"), limit(1));
   const snapshot = await getDocs(q);
   return snapshot.docs.length > 0 ? snapshot.docs[0].data().content : null;
 };
 
 // ✅ Firestore에서 게시물 개수 확인 후 오래된 게시물 삭제
 const managePostLimit = async () => {
-  const q = query(collection(db, "snsPosts"), orderBy("timestamp", "asc")); // 가장 오래된 게시물부터 가져오기
+  const q = query(collection(db, "snsPosts"), orderBy("timestamp", "asc"));
   const snapshot = await getDocs(q);
   const posts = snapshot.docs;
 
   if (posts.length >= 20) {
-    await deleteDoc(posts[0].ref); // 가장 오래된 게시물 삭제
+    await deleteDoc(doc(db, "snsPosts", posts[0].id));
     console.log("🗑️ 오래된 게시물 삭제 완료");
   }
 };
@@ -38,12 +61,11 @@ export const postNewStatus = async () => {
   }
 
   try {
-    isPosting = true; // 🚀 실행 시작
+    isPosting = true;
 
     const lastPostTime = await getLastPostTime();
     const now = new Date();
-    const hour = now.getHours(); // ✅ 현재 시간 가져오기
-    const minInterval = 2 * 60 * 60 * 1000; // ✅ 최소 2시간 간격 유지
+    const minInterval = 2 * 60 * 60 * 1000;
 
     if (lastPostTime && now.getTime() - lastPostTime < minInterval) {
       console.log("⏳ 아직 게시물을 올릴 시간이 아님!");
@@ -51,55 +73,32 @@ export const postNewStatus = async () => {
       return;
     }
 
-    // ✅ 시간대별 메시지 설정
-    let statusMessages = [];
-    if (hour >= 6 && hour < 12) {
-      statusMessages = [
-        "아침부터 활기차게 시작! ☀️",
-        "아침에는 카페에서 커피 한잔! ☕",
-        "오늘 하루도 화이팅! 💪",
-      ];
-    } else if (hour >= 12 && hour < 17) {
-      statusMessages = [
-        "밥 먹고 나니까 졸리다... 😴",
-        "도서관에서 공부 중! 📚",
-        "점심시간에 산책 중~ 🚶‍♂️",
-      ];
-    } else if (hour >= 17 && hour < 21) {
-      statusMessages = [
-        "친구랑 저녁 먹으러 나왔어! 🍽️",
-        "야경 보면서 생각 정리 중... 🌆",
-        "하늘섬에서 석양 감상 중... 🌅",
-      ];
-    } else {
-      statusMessages = [
-        "이제 슬슬 자야겠다... 💤",
-        "밤하늘의 별을 보며 감성에 젖는 중 🌌",
-        "늦은 밤, 조용한 시간... 🕰️",
-      ];
-    }
-
-    // 🔄 중복되지 않는 새로운 상태 메시지 선택
+    // ✨ 랜덤으로 캐릭터와 메시지 선택
+    const randomCharacter = charactersForSns[Math.floor(Math.random() * charactersForSns.length)];
     let newStatus;
-    let lastPostContent = await getLastPost();
+    const lastPostContent = await getLastPost();
+
+    // 중복되지 않는 메시지가 나올 때까지 반복
     do {
-      newStatus = statusMessages[Math.floor(Math.random() * statusMessages.length)];
+      newStatus = randomCharacter.messages[Math.floor(Math.random() * randomCharacter.messages.length)];
     } while (newStatus === lastPostContent);
+
 
     await managePostLimit();
 
-    // 📝 Firestore에 새로운 게시글 추가 (시간대 반영)
+    // ✨ 선택된 캐릭터의 정보로 새로운 게시글 추가
     const newPostRef = await addDoc(collection(db, "snsPosts"), {
-      author: "햇님이",
-      content: `${newStatus}`, // ✅ 시간대 반영 메시지만 게시
+      author: randomCharacter.name,
+      content: newStatus,
       timestamp: serverTimestamp(),
-      profileImage: "/images/hatnim-profile.png",
+      profileImage: randomCharacter.profileImage,
       likes: 0,
+      likedUsers: [], // 좋아요 누른 사용자 배열 초기화
     });
 
-    console.log(`📢 [햇님이 SNS] 새로운 게시글: "${newStatus}"`);
+    console.log(`📢 [${randomCharacter.name} SNS] 새로운 게시글: "${newStatus}"`);
 
-    // ✅ **게시글이 생성되면 자동으로 comments 컬렉션을 추가!**
+    // ✅ **게시글이 생성되면 자동으로 comments 컬렉션을 추가
     await setDoc(doc(db, `snsPosts/${newPostRef.id}/comments`, "placeholder"), {
       text: "댓글을 남겨보세요!",
       timestamp: serverTimestamp(),
@@ -109,10 +108,10 @@ export const postNewStatus = async () => {
 
     isPosting = false;
 
-    // ⏳ **게시글 업로드 간격: 랜덤 3~8시간**
+    // ⏳ **다음 게시글 업로드 간격 랜덤 설정 (기존 로직 유지)**
     const nextPostDelay = Math.random() * (28800000 - 10800000) + 10800000;
-
     setTimeout(postNewStatus, nextPostDelay);
+
   } catch (error) {
     console.error("🚨 Firestore에 게시물 추가 실패:", error);
     isPosting = false;

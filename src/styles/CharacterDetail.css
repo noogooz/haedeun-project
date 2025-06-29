@@ -1,170 +1,142 @@
-.character-detail {
-    text-align: center;
-    padding: 50px;
-    background: white;
-    color: black;
+/* 전체 컨테이너 */
+.detail-container {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* 2단 그리드 레이아웃 */
+.detail-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* 왼쪽 1, 오른쪽 2 비율 */
+  gap: 40px;
+  max-width: 1100px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 왼쪽 - 캐릭터 이미지 섹션 */
+.detail-image-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.detail-character-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+}
+
+.detail-character-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  margin-bottom: 10px;
+}
+
+.detail-character-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+}
+
+/* 대화 시작하기 버튼 */
+.detail-chat-button {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-decoration: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.detail-chat-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+/* 오른쪽 - 상세 정보 섹션 */
+.detail-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 정보 카드 */
+.info-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.info-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffcc00; /* 포인트 컬러 */
+  margin: 0 0 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 대표 대사 */
+.quote-text {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 프로필 리스트 */
+.profile-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.profile-list li {
+  margin-bottom: 8px;
+}
+
+/* 태그 (좋아하는 것, 싫어하는 것) */
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tag {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+}
+.tag-like {
+  background-color: rgba(74, 189, 149, 0.3);
+  border: 1px solid rgba(74, 189, 149, 0.7);
+}
+.tag-hate {
+  background-color: rgba(221, 83, 83, 0.3);
+  border: 1px solid rgba(221, 83, 83, 0.7);
+}
+
+/* 배경 이야기 카드 */
+.story-card p {
+  line-height: 1.7;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 900px) {
+  .detail-main-grid {
+    grid-template-columns: 1fr; /* 한 줄로 표시 */
   }
-  
-  .character-content {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.8);
-  }
-  
-  /* 🌙 햇님이 전용 스타일 */
-  .haetnime-style {
-    background: linear-gradient(to bottom, #1a0033, #4c0073);
-    color: white;
-    padding: 60px;
-    text-align: center;
-  }
-  
-  .haetnime-style h1 {
-    font-size: 2.5rem;
-    color: #ffcc00;
-  }
-  
-  .character-image {
-    width: 300px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0px 0px 15px rgba(255, 204, 0, 0.8);
-  }
-  
-  .character-detail {
-    text-align: center;
-    padding: 50px;
-    background: white;
-    color: black;
-  }
-  
-  /* 🌙 햇님이 전용 스타일 */
-  .haetnime-style {
-    background: linear-gradient(135deg, #2a004f, #500085, #8400d3); /* 몽환적인 네온 느낌 */
-    color: white;
-    padding: 80px;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .haetnime-style h1 {
-    font-size: 2.8rem;
-    font-weight: bold;
-    color: #ffcc00;
-    text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
-    animation: glow 1.5s infinite alternate;
-  }
-  
-  .haetnime-style p {
-    font-size: 1.4rem;
-    max-width: 600px;
-    line-height: 1.6;
-    opacity: 0.9;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  }
-  
-  /* 🔥 햇님이 이미지 효과 */
-  .character-image {
-    width: 300px;
-    border-radius: 15px;
-    margin-top: 20px;
-    box-shadow: 0px 0px 20px rgba(255, 204, 0, 0.8);
-    animation: float 3s infinite ease-in-out;
-  }
-  
-  /* 🌟 네온 효과 애니메이션 */
-  @keyframes glow {
-    from {
-      text-shadow: 0 0 5px rgba(255, 204, 0, 0.6);
-    }
-    to {
-      text-shadow: 0 0 15px rgba(255, 204, 0, 1);
-    }
-  }
-  
-  /* 🔥 몽환적인 부유 효과 */
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0px);
-    }
-  }
-/* 기본 스타일 */
-.character-detail {
-    text-align: center;
-    padding: 50px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  /* 🌙 햇님이 전용 스타일 */
-  .haetnime-style {
-    background: linear-gradient(135deg, #12002b, #35006d, #6a00b5); /* 네온 보라 계열 */
-    color: white;
-    padding: 80px;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  /* 🌟 네온 효과 글씨 */
-  .haetnime-style h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ffcc00;
-    text-shadow: 0 0 10px rgba(255, 204, 0, 1), 0 0 20px rgba(255, 204, 0, 0.8);
-    animation: glow 1.5s infinite alternate;
-  }
-  
-  .haetnime-style p {
-    font-size: 1.5rem;
-    max-width: 600px;
-    line-height: 1.6;
-    opacity: 0.9;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.1); /* 투명한 박스 느낌 */
-    padding: 15px;
-    border-radius: 10px;
-  }
-  
-  /* 🔥 몽환적인 반짝이는 효과 추가 */
-  @keyframes glow {
-    from {
-      text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
-    }
-    to {
-      text-shadow: 0 0 20px rgba(255, 204, 0, 1);
-    }
-  }
-  
-  /* 배경에 은은한 빛 퍼지는 효과 */
-  .haetnime-style::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: radial-gradient(circle, rgba(255, 204, 0, 0.2) 10%, rgba(0, 0, 0, 0) 70%);
-    opacity: 0.5;
-    z-index: -1;
-  }
-    
+}
