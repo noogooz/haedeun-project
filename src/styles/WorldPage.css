@@ -1,3 +1,4 @@
+/* ✅ 기본 데스크톱 스타일 (수정 없음) */
 .world-page-container {
   width: 100%;
   min-height: 100vh;
@@ -6,6 +7,7 @@
   flex-direction: column;
   align-items: center;
   color: white;
+  box-sizing: border-box;
 }
 
 .world-header {
@@ -46,7 +48,6 @@
   display: block;
 }
 
-/* ✨ [수정] 핀 스타일 */
 .world-region-pin {
   position: absolute;
   width: 25px;
@@ -55,8 +56,8 @@
   border: 2px solid white;
   cursor: pointer;
   transform: translate(-50%, -50%);
-  background-color: var(--pin-color); /* ✨ 변수로 색상 적용 */
-  box-shadow: 0 0 20px var(--pin-color); /* ✨ 변수로 그림자 색 적용 */
+  background-color: var(--pin-color);
+  box-shadow: 0 0 20px var(--pin-color);
   animation: pulse 2s infinite ease-in-out;
 }
 
@@ -65,7 +66,6 @@
   50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
   100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
 }
-
 
 .world-info-wrapper {
   height: 100%;
@@ -145,8 +145,33 @@
   font-size: 1.5rem;
 }
 
+/* --- ✨ [수정/추가] 모바일 반응형 스타일 --- */
 @media (max-width: 900px) {
+  /* 전체 패딩 조정 */
+  .world-page-container {
+    padding: 40px 15px;
+  }
+  
+  /* 타이틀 폰트 크기 조정 */
+  .world-main-title {
+    font-size: 2.2rem;
+  }
+  
+  /* 그리드를 세로 1단으로 변경하고, 중앙 정렬 */
   .world-content-grid {
     grid-template-columns: 1fr;
+    justify-items: center; /* 그리드 아이템들을 중앙에 배치 */
+  }
+
+  /* 모바일에서 맵과 정보 카드의 최대 너비 설정 */
+  .world-map-wrapper,
+  .world-info-wrapper {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  /* 정보 카드 내부 패딩 조정 */
+  .world-info-card {
+    padding: 25px;
   }
 }
