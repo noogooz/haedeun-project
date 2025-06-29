@@ -11,17 +11,16 @@ import {
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import { postNewStatus } from "../utils/snsUtils"; // ✅ 게시물 업로드 함수
+import { postNewStatus } from "../utils/snsUtils";
+import { updateAffinity } from "../utils/affinityUtils"; // ✨ 1. 호감도 업데이트 함수 import
 import "./SnsFeed.css";
 
 export default function SnsFeed() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState({});
   const [newComment, setNewComment] = useState({});
-  const [weatherData, setWeatherData] = useState(null);
 
-
-
+  // --- (파일 상단의 useEffect 두 개는 기존과 동일합니다) ---
   useEffect(() => {
     const q = query(collection(db, "snsPosts"), orderBy("timestamp", "desc"));
     const unsubscribe = onSnapshot(q, async (snapshot) => {
@@ -43,7 +42,6 @@ export default function SnsFeed() {
     return () => unsubscribe();
   }, []);
 
-  // ✅ Firestore에서 댓글 가져오기 (정상 작동하도록 수정)
   useEffect(() => {
     const unsubscribeMap = {};
     posts.forEach((post) => {
@@ -65,7 +63,8 @@ export default function SnsFeed() {
     };
   }, [posts]);
 
-  // ✅ 사용자 ID 가져오기
+
+  // 사용자 ID 가져오기 함수 (기존과 동일)
   const getUserId = () => {
     let userId = localStorage.getItem("snsUserId");
     if (!userId) {
@@ -75,8 +74,8 @@ export default function SnsFeed() {
     return userId;
   };
 
-  // ✅ 좋아요 기능
-  const handleLike = async (postId) => {
+  // ✨ 2. '좋아요' 기능에 호감도 업데이트 로직 추가
+  const handleLike = async (postId, authorName) => {
     const userId = getUserId();
     const postRef = doc(db, "snsPosts", postId);
     const postSnap = await getDoc(postRef);
@@ -87,15 +86,22 @@ export default function SnsFeed() {
       const likedUsers = post.likedUsers || [];
 
       if (likedUsers.includes(userId)) {
+        // 이미 '좋아요'를 누른 상태 -> '좋아요' 취소 (호감도 변동 없음)
         const newLikedUsers = likedUsers.filter((id) => id !== userId);
         await updateDoc(postRef, { likes: likes - 1, likedUsers: newLikedUsers });
       } else {
-        await updateDoc(postRef, { likes: likes + 1, likedUsers: [...likedUsers, userId] });
+        // '좋아요'를 처음 누르는 상태 -> '좋아요' 추가 및 호감도 1점 증가
+        await updateDoc(postRef, {
+          likes: likes + 1,
+          likedUsers: [...likedUsers, userId],
+        });
+        // ✨ 이 게시물의 작성자(authorName)에게 호감도 1점을 부여합니다.
+        await updateAffinity(userId, authorName, 1);
       }
     }
   };
 
-  // ✅ 댓글 추가 기능 (Firestore에서 `serverTimestamp()` 사용)
+  // --- (댓글 관련 함수들과 타임스탬프 변환 함수는 기존과 동일합니다) ---
   const handleCommentSubmit = async (postId) => {
     if (!newComment[postId]?.trim()) return;
 
@@ -103,12 +109,11 @@ export default function SnsFeed() {
     await addDoc(commentsRef, {
       userId: getUserId(),
       text: newComment[postId],
-      timestamp: serverTimestamp(), // ✅ Firestore의 서버 타임스탬프 사용
+      timestamp: serverTimestamp(),
     });
 
     setNewComment((prev) => ({ ...prev, [postId]: "" }));
 
-    // ✅ 햇님이 자동 답변 (30% 확률)
     if (Math.random() < 0.3) {
       setTimeout(() => {
         addDoc(commentsRef, {
@@ -120,7 +125,6 @@ export default function SnsFeed() {
     }
   };
 
-  // ✅ 햇님이 자동 답변 목록
   const getHatnimeeReply = () => {
     const replies = [
       "정말 좋은 생각이야! 😊",
@@ -133,7 +137,6 @@ export default function SnsFeed() {
     return replies[Math.floor(Math.random() * replies.length)];
   };
 
-  // ✅ 타임스탬프 변환 함수
   const timeAgo = (timestamp) => {
     if (!timestamp?.seconds) return "방금 전";
     const now = new Date();
@@ -146,30 +149,27 @@ export default function SnsFeed() {
     return `${Math.floor(diff / 1440)}일 전`;
   };
 
+  // ✨ 3. JSX 렌더링 부분에서 handleLike 함수에 post.author 전달
   return (
     <div className="sns-container">
       <h2 className="sns-title"> SNS</h2>
-
-    
-
       <div className="sns-feed">
         {posts.map((post) => (
           <div key={post.id} className="sns-post">
             <div className="post-header">
               <img src={post.profileImage || "/images/hatnim-profile.png"} alt="프로필" className="sns-profile-pic" />
               <div>
-                <p className="post-author">햇님이</p>
+                <p className="post-author">{post.author}</p>
                 <p className="post-time">{timeAgo(post.timestamp)}</p>
               </div>
             </div>
             <p className="post-content">{post.content}</p>
             <div className="post-actions">
-              <button onClick={() => handleLike(post.id)} className="like-button">
+              {/* ✨ onClick 핸들러에 post.author를 넘겨줍니다. */}
+              <button onClick={() => handleLike(post.id, post.author)} className="like-button">
                 {post.likedUsers?.includes(getUserId()) ? "❤️" : "🤍"} {post.likes || 0}
               </button>
             </div>
-
-            {/* ✅ 댓글 영역 */}
             <div className="comments-section">
               {comments[post.id]?.map((comment) => (
                 <div key={comment.id} className="comment">

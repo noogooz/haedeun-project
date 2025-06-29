@@ -7,12 +7,14 @@ import {
   query,
   orderBy,
   onSnapshot,
-  serverTimestamp, // serverTimestamp를 사용하기 위해 import
+  serverTimestamp,
 } from "firebase/firestore";
-import { sendMessageToOpenAI } from "../api/openaiApi"; // 경로 확인
+import { sendMessageToOpenAI } from "../api/openaiApi";
+import { updateAffinity } from "../utils/affinityUtils"; // ✨ 1. 호감도 업데이트 함수 import
 import "../styles/ChatPage.css";
 
-// 사용자 ID를 가져오는 함수
+// --- (이 아래의 getUserId, characterPrompts, characterAvatars 부분은 기존과 동일합니다) ---
+
 const getUserId = () => {
   let userId = localStorage.getItem("userId");
   if (!userId) {
@@ -22,7 +24,6 @@ const getUserId = () => {
   return userId;
 };
 
-// 캐릭터 페르소나 프롬프트 (기존과 동일)
 const characterPrompts = {
     "햇님": `넌 18살 여자고 밝고 활발한 태양의 요정이야! ☀️  
     항상 긍정적이고 에너지가 넘치며, 친구들과 수다 떠는 걸 좋아해.  
@@ -87,7 +88,6 @@ const characterPrompts = {
     최대한 AI처럼 말고 진짜 친구처럼 대화해줘.`
 };
 
-// 캐릭터 아바타 이미지 경로 (기존과 동일)
 const characterAvatars = {
   "햇님": "/images/hatnimee2.png",
   "달님": "/images/dalnim.png",
@@ -99,17 +99,17 @@ const characterAvatars = {
   "루트": "/images/root.png"
 };
 
+
 export default function ChatPage() {
   const { characterName } = useParams();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
+  const [isLoading, setIsLoading] = useState(false);
   const userId = getUserId();
   const chatMessagesEndRef = useRef(null);
 
   const systemPrompt = characterPrompts[characterName] || "넌 친절한 AI 비서야.";
 
-  // 채팅 스크롤을 맨 아래로 이동시키는 함수
   const scrollToBottom = () => {
     chatMessagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -118,7 +118,6 @@ export default function ChatPage() {
     scrollToBottom();
   }, [messages]);
   
-  // ✨ [수정됨] Firestore에서 이전 대화 기록을 실시간으로 불러옴
   useEffect(() => {
     const chatRef = collection(db, `chats/${userId}/${characterName}`);
     const q = query(chatRef, orderBy("timestamp", "asc"));
@@ -131,53 +130,47 @@ export default function ChatPage() {
     return () => unsubscribe();
   }, [characterName, userId]);
 
-  // Firestore에 메시지를 저장하는 함수
   const saveMessageToFirestore = async (role, content) => {
     const chatRef = collection(db, `chats/${userId}/${characterName}`);
     await addDoc(chatRef, {
       role,
       content,
-      timestamp: serverTimestamp(), // 서버 시간을 사용하여 정확도 높임
+      timestamp: serverTimestamp(),
     });
   };
 
-  // ✨ [수정됨] 메시지 전송 및 AI 답변 요청 함수
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return; // 로딩 중일 때 전송 방지
+    if (!input.trim() || isLoading) return;
 
-    setIsLoading(true); // 로딩 시작
+    setIsLoading(true);
     const userMessage = { role: "user", content: input };
     
-    // 화면에 사용자 메시지를 즉시 표시
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     await saveMessageToFirestore("user", input);
     setInput("");
 
-    // AI에게 보낼 전체 메시지 목록 준비 (시스템 프롬프트 제외)
     const messagesForApi = [...messages, userMessage].map(({ role, content }) => ({ role, content }));
 
     try {
-      // OpenAI API 호출 시, 상세 프롬프트와 전체 대화 기록을 함께 전달
       const response = await sendMessageToOpenAI(messagesForApi, systemPrompt);
       const botMessage = { role: "assistant", content: response };
-
-      // AI 응답을 화면에 표시하고 Firestore에 저장
       await saveMessageToFirestore("assistant", response);
+
+      // ✨ 2. AI의 답변을 성공적으로 받은 후, 호감도 5점을 올립니다.
+      await updateAffinity(userId, characterName, 5);
 
     } catch (error) {
       console.error("메시지 전송 중 오류 발생:", error);
-      // 에러 발생 시 사용자에게 알림 (선택사항)
       const errorMessage = { role: "assistant", content: "앗, 지금은 연결이 불안정한가 봐요. 잠시 후 다시 시도해 주세요! 😢" };
       await saveMessageToFirestore("assistant", errorMessage.content);
     } finally {
-      setIsLoading(false); // 로딩 종료
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="chat-container">
       <h1>💬 {characterName}와 대화하기</h1>
-
       <div className="chat-box">
         <div className="chat-messages">
           {messages.map((msg, index) => (
@@ -190,7 +183,6 @@ export default function ChatPage() {
               </div>
             </div>
           ))}
-          {/* 로딩 인디케이터 */}
           {isLoading && (
             <div className="ai-message-container">
               <img src={characterAvatars[characterName]} alt={characterName} className="character-avatar" />
@@ -201,16 +193,15 @@ export default function ChatPage() {
           )}
           <div ref={chatMessagesEndRef} />
         </div>
-
         <div className="chat-input-container">
           <input
             className="chat-input"
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()} // 엔터키로 전송
+            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             placeholder="메시지를 입력하세요..."
-            disabled={isLoading} // 로딩 중일 때 입력 비활성화
+            disabled={isLoading}
           />
           <button className="send-button" onClick={handleSend} disabled={isLoading}>
             {isLoading ? "입력중..." : "보내기"}
