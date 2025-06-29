@@ -9,9 +9,10 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  increment,
 } from "firebase/firestore";
 import { updateAffinity } from "../utils/affinityUtils";
-import { getUserId } from "../utils/getUserId"; // ✨ 통합 ID 함수를 import 합니다.
+import { getUserId } from "../utils/getUserId"; // ✨ 1. '통합 신분증'을 import 합니다.
 import "./Guestbook.css";
 
 export default function Guestbook() {
@@ -19,34 +20,35 @@ export default function Guestbook() {
   const [nickname, setNickname] = useState("");
   const [message, setMessage] = useState("");
   const [sortType, setSortType] = useState("latest");
-  const userId = getUserId(); // ✨ 통합 ID 함수를 사용합니다.
+  const userId = getUserId(); // ✨ 2. 통합 ID 함수를 사용합니다.
 
   useEffect(() => {
-    const q = query(
-      collection(db, "guestbookMessages"),
-      orderBy(sortType === "latest" ? "timestamp" : "likes", "desc")
-    );
+    const q = query(collection(db, "guestbookMessages"), orderBy(sortType === 'latest' ? 'timestamp' : 'likes', 'desc'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      setMessages(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      setMessages(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
-    return () => unsubscribe();
+    return unsubscribe;
   }, [sortType]);
+  
+  // ✨ 3. 파일 내부에 있던 별도의 getUserId 함수를 완전히 삭제했습니다.
 
   const handleLike = async (id) => {
-    const messageRef = doc(db, "guestbookMessages", id);
-    const currentMessage = messages.find((msg) => msg.id === id);
-    if (currentMessage) {
-      const { likes, likedBy, userId: authorId, nickname: authorNickname } = currentMessage;
-      if (!likedBy?.includes(userId)) {
-        await updateDoc(messageRef, { likes: (likes || 0) + 1, likedBy: [...(likedBy || []), userId] });
-        if (authorId === "character_reply") {
-          const characterName = authorNickname.split(" ").pop();
-          await updateAffinity(userId, characterName, 3);
-        }
+    const msgRef = doc(db, "guestbookMessages", id);
+    const msgDoc = messages.find(m => m.id === id);
+
+    if (msgDoc && !msgDoc.likedBy?.includes(userId)) {
+      await updateDoc(msgRef, {
+        likes: increment(1),
+        likedBy: [...(msgDoc.likedBy || []), userId]
+      });
+      if (msgDoc.userId === "character_reply") {
+        const characterName = msgDoc.nickname.split(" ").pop();
+        await updateAffinity(userId, characterName, 3);
       }
     }
   };
 
+  // ✅ 기존 캐릭터 답글 로직 (그대로 유지)
   const getCharacterReply = (userMessage) => {
     const text = userMessage.toLowerCase();
     const replies = [];
@@ -58,11 +60,13 @@ export default function Guestbook() {
     return replies[Math.floor(Math.random() * replies.length)];
   };
 
+  // ✅ 기존 메시지 등록 기능 (getUserId()만 수정)
   const submitMessage = async () => {
     if (!nickname.trim() || !message.trim()) return;
     await addDoc(collection(db, "guestbookMessages"), {
       nickname, text: message, userId, likes: 0, likedBy: [], timestamp: new Date(),
     });
+    // ✅ 기존 캐릭터 자동 답글 기능 (그대로 유지)
     if (Math.random() < 0.5) {
       const reply = getCharacterReply(message);
       if (reply) {
@@ -77,6 +81,7 @@ export default function Guestbook() {
     setMessage("");
   };
 
+  // ✅ 기존 메시지 삭제 기능 (그대로 유지)
   const deleteMessage = async (id, messageUserId) => {
     if (userId === messageUserId) {
       await deleteDoc(doc(db, "guestbookMessages", id));
