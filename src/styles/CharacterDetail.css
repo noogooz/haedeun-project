@@ -180,3 +180,20 @@
 .locked-card p {
   color: rgba(255, 255, 255, 0.6);
 }
+
+/* --- ✨ [추가] 모바일 버튼 레이아웃 수정 --- */
+@media (max-width: 900px) {
+  .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .detail-chat-button, .gallery-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+  }
+}
