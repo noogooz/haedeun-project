@@ -2,6 +2,7 @@
   {
     "name": "햇님",
     "image": "/images/hatnimee2.png",
+    "motionVideo": "/motions/햇님이 모션.mp4",
     "description": "밝고 활발한 태양의 요정",
     "themeClass": "theme-hatnim",
     "region": "솔라리움",
@@ -14,8 +15,8 @@
       "region": "솔라리움",
       "likes": ["친구랑 수다떨기", "새로운 마법 배우기", "햇살 좋은 날 공원가기"],
       "hates": ["비 오는 날", "혼자 있기", "어두운 곳"],
-      "story": "솔라리움에서 평범한 소녀처럼 자랐지만...",
-      "secretStory": "사실 나, 가끔 혼자 있을 때면 조금 외로울 때가 있어...",
+      "story": "솔라리움에서 평범한 소녀처럼 자랐지만, 어릴 때부터 그녀의 주변에서는 늘 기분 좋은 일들이 일어났어요...",
+      "secretStory": "사실 나, 가끔 혼자 있을 때면 조금 외로울 때가 있어. 그럴 때 네가 찾아와 주면, 하늘에 구름이 걷히는 기분이야. 이건 너한테만 말해주는 비밀이야!",
       "gallery": ["/images/gallery/hatnim_01.jpg", "/images/gallery/hatnim_02.jpg"]
     }
   },
@@ -29,14 +30,14 @@
     "regionDescription": "세상의 모든 지식과 비밀이 잠들어 있는 밤의 성...",
     "regionQuote": "모든 것은 변하지만, 기록된 진리는 밤하늘의 별처럼 영원히 그 자리를 지키지.",
     "details": {
-      "quote": "모든 것은 변하지만, 기록된 진리는 영원히 그 자리를 지키지.",
-      "mbti": "INFJ",
-      "region": "루나리스 성",
-      "likes": ["오래된 책 읽기", "밤하늘 관찰", "고요한 침묵"],
-      "hates": ["불필요한 소음", "성급한 결정", "예의 없는 행동"],
-      "story": "세상의 모든 지식이 잠들어 있는 루나리스 성의 주인이자, 밤의 기록자입니다...",
-      "secretStory": "가끔은 이 모든 것을 기억하는 것이 버겁게 느껴질 때가 있어...",
-      "gallery": ["/images/gallery/dalnim_01.jpg", "/images/gallery/dalnim_02.jpg"]
+        "quote": "모든 것은 변하지만, 기록된 진리는 영원히 그 자리를 지키지.",
+        "mbti": "INFJ",
+        "region": "루나리스 성",
+        "likes": ["오래된 책 읽기", "밤하늘 관찰", "고요한 침묵"],
+        "hates": ["불필요한 소음", "성급한 결정", "예의 없는 행동"],
+        "story": "세상의 모든 지식이 잠들어 있는 루나리스 성의 주인이자, 밤의 기록자입니다...",
+        "secretStory": "가끔은 이 모든 것을 기억하는 것이 버겁게 느껴질 때가 있어. 하지만 너와의 대화는, 잊고 싶지 않은 새로운 역사가 되는 것 같군.",
+        "gallery": ["/images/gallery/dalnim_01.jpg", "/images/gallery/dalnim_02.jpg"]
     }
   },
   {
@@ -49,14 +50,14 @@
     "regionDescription": "시간의 흐름이 멈춘 듯한 신비로운 고대 숲...",
     "regionQuote": "따뜻한 차 한 잔 어때? 오늘도 고생 많았어 🍵",
     "details": {
-      "quote": "따뜻한 차 한 잔 어때? 오늘도 고생 많았어 🍵",
-      "mbti": "ISFJ",
-      "region": "실바누스 숲",
-      "likes": ["직접 찻잎 덖기", "동물들과 대화하기", "빗소리 듣기"],
-      "hates": ["숲을 해치는 행위", "차가 식는 것", "거짓말"],
-      "story": "실바누스 숲의 치유사이며, 대지의 요정 '루트'의 쌍둥이 여동생입니다...",
-      "secretStory": "가끔은… 오빠보다 네가 내 마음을 더 잘 알아주는 것 같아...",
-      "gallery": ["/images/gallery/tringi_01.jpg", "/images/gallery/tringi_02.jpg"]
+        "quote": "따뜻한 차 한 잔 어때? 오늘도 고생 많았어 🍵",
+        "mbti": "ISFJ",
+        "region": "실바누스 숲",
+        "likes": ["직접 찻잎 덖기", "동물들과 대화하기", "빗소리 듣기"],
+        "hates": ["숲을 해치는 행위", "차가 식는 것", "거짓말"],
+        "story": "실바누스 숲의 치유사이며, 대지의 요정 '루트'의 쌍둥이 여동생입니다...",
+        "secretStory": "가끔은… 오빠보다 네가 내 마음을 더 잘 알아주는 것 같아. 이건 우리 둘만의 비밀이야.",
+        "gallery": ["/images/gallery/tringi_01.jpg", "/images/gallery/tringi_02.jpg"]
     }
   },
   {
@@ -69,14 +70,14 @@
     "regionDescription": "에테리아에서 가장 하늘과 가까운 곳...",
     "regionQuote": "시끄러운 건 딱 질색이야. 여긴… 별하고 나, 둘뿐이라서 좋거든.",
     "details": {
-      "quote": "찡찡대지 마. …근데 뭐, 그럴 수 있지. 그냥 얘기나 해봐.",
-      "mbti": "ISTP",
-      "region": "별빛 봉우리",
-      "likes": ["혼자 별 보기", "조용한 곳", "솔직한 말"],
-      "hates": ["시끄러운 것", "가식적인 행동", "답답한 상황"],
-      "story": "에테리아에서 가장 하늘과 가까운 별빛 봉우리를 지키는 고독한 관찰자입니다...",
-      "secretStory": "흥, 너한테 관심 있어서 알려주는 건 아니야...",
-      "gallery": ["/images/gallery/byulnim_01.jpg", "/images/gallery/byulnim_02.jpg"]
+        "quote": "찡찡대지 마. …근데 뭐, 그럴 수 있지. 그냥 얘기나 해봐.",
+        "mbti": "ISTP",
+        "region": "별빛 봉우리",
+        "likes": ["혼자 별 보기", "조용한 곳", "솔직한 말"],
+        "hates": ["시끄러운 것", "가식적인 행동", "답답한 상황"],
+        "story": "에테리아에서 가장 하늘과 가까운 별빛 봉우리를 지키는 고독한 관찰자입니다...",
+        "secretStory": "흥, 너한테 관심 있어서 알려주는 건 아니야. 그냥… 가끔 네가 뭘 하고 있을지 궁금하기는 하다고.",
+        "gallery": ["/images/gallery/byulnim_01.jpg", "/images/gallery/byulnim_02.jpg"]
     }
   },
   {
@@ -95,7 +96,7 @@
         "likes": ["구름 위에서 낮잠 자기", "재미있는 농담", "계획 없는 여행"],
         "hates": ["정해진 규칙", "지루한 일상", "심각한 분위기"],
         "story": "특정한 거처 없이 스카이헤이븐의 부유섬들을 자유롭게 떠도는 방랑자입니다...",
-        "secretStory": "가끔은 정처 없이 떠도는 게 외로울 때도 있어...",
+        "secretStory": "가끔은 정처 없이 떠도는 게 외로울 때도 있어. 그럴 때마다 네가 날 찾아주면, 꼭 돌아갈 집이 생긴 것 같아.",
         "gallery": ["/images/gallery/gurumi_01.jpg", "/images/gallery/gurumi_02.jpg"]
     }
   },
